@@ -156,45 +156,54 @@ export default function BookingForm() {
   });
 
   return (
-    <form ref={formRef} className="booking-form" onSubmit={handleSubmit} noValidate>
-      <div className={styles.progressHeader} aria-live="polite" aria-atomic="true">
-        <p className={styles.progressCount}>Step {step} of 2</p>
-        <p className={styles.progressTitle}>{step === 1 ? "Contact and service" : "Date, budget, and details"}</p>
+    <>
+      <div className={styles.trustSignals} aria-label="Booking assurances">
+        <div className={styles.trustItem}><span className={styles.trustIcon} aria-hidden="true">✓</span><span>Free consultation</span></div>
+        <div className={styles.trustItem}><span className={styles.trustIcon} aria-hidden="true">✓</span><span>No obligation</span></div>
+        <div className={styles.trustItem}><span className={styles.trustIcon} aria-hidden="true">✓</span><span>Response within one business day</span></div>
+        <div className={styles.trustItem}><span className={styles.trustIcon} aria-hidden="true">✓</span><span>Secure submission</span></div>
       </div>
 
-      <div className={styles.progress} aria-label={`Step ${step} of 2`}>
-        <div className={`${styles.step} ${step === 1 ? styles.active : styles.complete}`}><span>{step === 2 ? "✓" : "1"}</span>Contact and service</div>
-        <div className={`${styles.step} ${step === 2 ? styles.active : ""}`}><span>2</span>Date and details</div>
-      </div>
-
-      <section className={styles.panel} hidden={step !== 1} aria-labelledby="booking-step-one-title">
-        <div className={styles.heading}><strong id="booking-step-one-title">Tell us who you are.</strong><small>Start with your contact details and the service you need.</small></div>
-        <div className="form-grid">
-          <label className={styles.field}><span>Name *</span><input name="name" type="text" minLength={2} maxLength={100} required autoComplete="name" {...fieldProps("name")} /><small id="name-hint" className={styles.hint}>Use the name you want us to use when we follow up.</small>{errors.name && <small id="name-error" className={styles.error} role="alert">{errors.name}</small>}</label>
-          <label className={styles.field}><span>Company</span><input name="company" type="text" maxLength={120} autoComplete="organization" /><small className={styles.hint}>Optional—business or brand name.</small></label>
-          <label className={styles.field}><span>Email *</span><input name="email" type="email" required autoComplete="email" {...fieldProps("email")} /><small id="email-hint" className={styles.hint}>We’ll send appointment confirmation and next steps here.</small>{errors.email && <small id="email-error" className={styles.error} role="alert">{errors.email}</small>}</label>
-          <label className={styles.field}><span>Phone <em>(optional)</em></span><input name="phone" type="tel" inputMode="tel" maxLength={30} autoComplete="tel" aria-describedby="phone-hint" /><small id="phone-hint" className={styles.hint}>Used only for appointment updates by call or text. We will not send promotional messages.</small></label>
-          <label className={styles.field}><span>Service needed *</span><select name="service" required defaultValue="" {...fieldProps("service")}><option value="" disabled>Select a service</option>{services.map(service => <option key={service}>{service}</option>)}</select><small id="service-hint" className={styles.hint}>Choose the closest match; we can refine the scope together.</small>{errors.service && <small id="service-error" className={styles.error} role="alert">{errors.service}</small>}</label>
+      <form ref={formRef} className="booking-form" onSubmit={handleSubmit} noValidate>
+        <div className={styles.progressHeader} aria-live="polite" aria-atomic="true">
+          <p className={styles.progressCount}>Step {step} of 2</p>
+          <p className={styles.progressTitle}>{step === 1 ? "Contact and service" : "Date, budget, and details"}</p>
         </div>
-        <div className={styles.actions}><button className="button" type="button" onClick={goToStepTwo}>Continue to project details</button></div>
-      </section>
 
-      <section className={styles.panel} hidden={step !== 2} aria-labelledby="booking-step-two-title">
-        <div className={styles.heading}><strong id="booking-step-two-title">Choose timing and scope.</strong><small>Add your preferred date, budget, and project details.</small></div>
-        <div className="form-grid">
-          <label className={styles.field}><span>Preferred date *</span><input name="preferred_date" type="date" min={minDate} required {...fieldProps("preferred_date")} /><small id="preferred_date-hint" className={styles.hint}>Select your first-choice date. We’ll confirm availability by email.</small>{errors.preferred_date && <small id="preferred_date-error" className={styles.error} role="alert">{errors.preferred_date}</small>}</label>
-          <label className={styles.field}><span>Preferred time *</span><select name="preferred_time" required defaultValue="" {...fieldProps("preferred_time")}><option value="" disabled>Select a time window</option><option>9:00 AM–12:00 PM</option><option>12:00 PM–3:00 PM</option><option>3:00 PM–6:00 PM</option><option>6:00 PM–8:00 PM</option></select><small id="preferred_time-hint" className={styles.hint}>Times are interpreted in your device’s local timezone.</small>{errors.preferred_time && <small id="preferred_time-error" className={styles.error} role="alert">{errors.preferred_time}</small>}</label>
-          <label className={styles.field}><span>Estimated budget</span><select name="budget" defaultValue=""><option value="">Select a range</option>{budgets.map(budget => <option key={budget}>{budget}</option>)}</select><small className={styles.hint}>Optional—this helps us recommend the right scope.</small></label>
+        <div className={styles.progress} aria-label={`Step ${step} of 2`}>
+          <div className={`${styles.step} ${step === 1 ? styles.active : styles.complete}`}><span>{step === 2 ? "✓" : "1"}</span>Contact and service</div>
+          <div className={`${styles.step} ${step === 2 ? styles.active : ""}`}><span>2</span>Date and details</div>
         </div>
-        <label className={`full-field ${styles.field}`}><span>Tell us about your project *</span><textarea name="project_details" minLength={10} maxLength={2000} rows={5} required placeholder="What are you trying to automate, improve, or launch?" {...fieldProps("project_details")} /><small id="project_details-hint" className={styles.hint}>Mention the current problem, desired outcome, and any tools you already use.</small>{errors.project_details && <small id="project_details-error" className={styles.error} role="alert">{errors.project_details}</small>}</label>
-        <div className={styles.actions}>
-          <button className={styles.back} type="button" onClick={() => setStep(1)}>Back</button>
-          <button className="button" type="submit" disabled={status === "submitting"}>{status === "submitting" ? "Submitting…" : "Request my strategy call"}</button>
-        </div>
-        <p className={styles.note}>Submitting this form does not guarantee a time slot. We’ll confirm availability by email.</p>
-      </section>
 
-      {message && <div className={`form-message ${status}`} role="status">{message}</div>}
-    </form>
+        <section className={styles.panel} hidden={step !== 1} aria-labelledby="booking-step-one-title">
+          <div className={styles.heading}><strong id="booking-step-one-title">Tell us who you are.</strong><small>Start with your contact details and the service you need.</small></div>
+          <div className="form-grid">
+            <label className={styles.field}><span>Name *</span><input name="name" type="text" minLength={2} maxLength={100} required autoComplete="name" {...fieldProps("name")} /><small id="name-hint" className={styles.hint}>Use the name you want us to use when we follow up.</small>{errors.name && <small id="name-error" className={styles.error} role="alert">{errors.name}</small>}</label>
+            <label className={styles.field}><span>Company</span><input name="company" type="text" maxLength={120} autoComplete="organization" /><small className={styles.hint}>Optional—business or brand name.</small></label>
+            <label className={styles.field}><span>Email *</span><input name="email" type="email" required autoComplete="email" {...fieldProps("email")} /><small id="email-hint" className={styles.hint}>We’ll send appointment confirmation and next steps here.</small>{errors.email && <small id="email-error" className={styles.error} role="alert">{errors.email}</small>}</label>
+            <label className={styles.field}><span>Phone <em>(optional)</em></span><input name="phone" type="tel" inputMode="tel" maxLength={30} autoComplete="tel" aria-describedby="phone-hint" /><small id="phone-hint" className={styles.hint}>Used only for appointment updates by call or text. We will not send promotional messages.</small></label>
+            <label className={styles.field}><span>Service needed *</span><select name="service" required defaultValue="" {...fieldProps("service")}><option value="" disabled>Select a service</option>{services.map(service => <option key={service}>{service}</option>)}</select><small id="service-hint" className={styles.hint}>Choose the closest match; we can refine the scope together.</small>{errors.service && <small id="service-error" className={styles.error} role="alert">{errors.service}</small>}</label>
+          </div>
+          <div className={styles.actions}><button className="button" type="button" onClick={goToStepTwo}>Continue to project details</button></div>
+        </section>
+
+        <section className={styles.panel} hidden={step !== 2} aria-labelledby="booking-step-two-title">
+          <div className={styles.heading}><strong id="booking-step-two-title">Choose timing and scope.</strong><small>Add your preferred date, budget, and project details.</small></div>
+          <div className="form-grid">
+            <label className={styles.field}><span>Preferred date *</span><input name="preferred_date" type="date" min={minDate} required {...fieldProps("preferred_date")} /><small id="preferred_date-hint" className={styles.hint}>Select your first-choice date. We’ll confirm availability by email.</small>{errors.preferred_date && <small id="preferred_date-error" className={styles.error} role="alert">{errors.preferred_date}</small>}</label>
+            <label className={styles.field}><span>Preferred time *</span><select name="preferred_time" required defaultValue="" {...fieldProps("preferred_time")}><option value="" disabled>Select a time window</option><option>9:00 AM–12:00 PM</option><option>12:00 PM–3:00 PM</option><option>3:00 PM–6:00 PM</option><option>6:00 PM–8:00 PM</option></select><small id="preferred_time-hint" className={styles.hint}>Times are interpreted in your device’s local timezone.</small>{errors.preferred_time && <small id="preferred_time-error" className={styles.error} role="alert">{errors.preferred_time}</small>}</label>
+            <label className={styles.field}><span>Estimated budget</span><select name="budget" defaultValue=""><option value="">Select a range</option>{budgets.map(budget => <option key={budget}>{budget}</option>)}</select><small className={styles.hint}>Optional—this helps us recommend the right scope.</small></label>
+          </div>
+          <label className={`full-field ${styles.field}`}><span>Tell us about your project *</span><textarea name="project_details" minLength={10} maxLength={2000} rows={5} required placeholder="What are you trying to automate, improve, or launch?" {...fieldProps("project_details")} /><small id="project_details-hint" className={styles.hint}>Mention the current problem, desired outcome, and any tools you already use.</small>{errors.project_details && <small id="project_details-error" className={styles.error} role="alert">{errors.project_details}</small>}</label>
+          <div className={styles.actions}>
+            <button className={styles.back} type="button" onClick={() => setStep(1)}>Back</button>
+            <button className="button" type="submit" disabled={status === "submitting"}>{status === "submitting" ? "Submitting…" : "Request my strategy call"}</button>
+          </div>
+          <p className={styles.note}>Submitting this form does not guarantee a time slot. We’ll confirm availability by email.</p>
+        </section>
+
+        {message && <div className={`form-message ${status}`} role="status">{message}</div>}
+      </form>
+    </>
   );
 }
