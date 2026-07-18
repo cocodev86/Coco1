@@ -1,4 +1,5 @@
 import styles from "./PricingCards.module.css";
+import TrackedLink from "./TrackedLink";
 
 const plans = [
   {
@@ -57,9 +58,14 @@ export default function PricingCards() {
                 <li key={feature}>✓ {feature}</li>
               ))}
             </ul>
-            <a href="#booking" className={index === 1 ? "button" : "button outline"}>
+            <TrackedLink
+              href="#booking"
+              className={index === 1 ? "button" : "button outline"}
+              eventName="Pricing CTA Click"
+              eventData={{ plan: plan.name, price: plan.price }}
+            >
               Get started
-            </a>
+            </TrackedLink>
           </article>
         ))}
       </div>
