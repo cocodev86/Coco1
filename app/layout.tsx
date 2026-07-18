@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import "./booking.css";
 
 export const metadata: Metadata = {
   title: "Metaphor Consulting | AI Automation & Digital Systems",
