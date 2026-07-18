@@ -1,0 +1,41 @@
+.icon {
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  border-radius: 14px;
+  background: #7457ff14;
+  color: var(--purple);
+  border: 1px solid #7457ff24;
+  flex: none;
+}
+
+.icon svg {
+  width: 23px;
+  height: 23px;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+}
+
+.number {
+  font-size: 11px;
+  color: var(--purple);
+  font-weight: 700;
+}
+
+@media (min-width: 700px) {
+  .icon {
+    width: 48px;
+    height: 48px;
+  }
+
+  .icon svg {
+    width: 25px;
+    height: 25px;
+  }
+}
