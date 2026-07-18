@@ -14,6 +14,46 @@
 .pricing { order: 8; }
 .footer { order: 9; }
 
+.backToTopWrap {
+  display: flex;
+  justify-content: center;
+  margin-top: 28px;
+}
+
+.backToTop {
+  display: inline-flex;
+  min-height: 48px;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 18px;
+  border: 1px solid rgba(255,255,255,.28);
+  border-radius: 999px;
+  background: rgba(255,255,255,.1);
+  color: #fff;
+  font-size: 13px;
+  font-weight: 800;
+  text-decoration: none;
+  transition: transform .18s ease, background .18s ease, border-color .18s ease;
+}
+
+.backToTop:hover,
+.backToTop:focus-visible {
+  border-color: rgba(255,255,255,.55);
+  background: rgba(255,255,255,.17);
+  transform: translateY(-2px);
+}
+
+.backToTop:focus-visible {
+  outline: 3px solid rgba(255,255,255,.38);
+  outline-offset: 3px;
+}
+
+.backToTop span {
+  font-size: 16px;
+  line-height: 1;
+}
+
 @media (min-width: 700px) {
   .services { order: 4; }
   .process { order: 5; }
@@ -21,4 +61,13 @@
   .pricing { order: 7; }
   .booking { order: 8; }
   .footer { order: 9; }
+
+  .backToTopWrap {
+    justify-content: flex-end;
+    margin-top: 34px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .backToTop { transition: none; }
 }
