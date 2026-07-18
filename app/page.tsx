@@ -59,6 +59,7 @@ export default function Home() {
       <section className="booking-section" id="booking"><div className="shell booking-layout"><div className="booking-copy"><p className="eyebrow">Book a free strategy call</p><h2>Let’s map the system your business needs next.</h2><p>Choose a preferred date and time window, tell us what you want to improve, and we’ll review your request before confirming the appointment.</p><div className="booking-points"><span>✓ No public email required</span><span>✓ Secure Supabase submission</span><span>✓ Mobile-friendly scheduling</span></div></div><BookingForm /></div></section>
 
       <footer className="shell"><a className="brand" href="#top"><span>M</span>Metaphor</a><p>AI automation and digital systems for growing businesses.</p><small>© 2026 Metaphor Consulting. All rights reserved.</small></footer>
+      <a className="mobile-cta" href="#booking" aria-label="Book a free strategy call">Book a free strategy call</a>
     </main>
   );
 }
