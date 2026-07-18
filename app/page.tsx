@@ -1,0 +1,62 @@
+const services = [
+  ["AI Landing Pages", "Conversion-focused pages with intelligent lead capture, persuasive copy, and fast mobile performance."],
+  ["Booking Automation", "Automated scheduling, confirmations, reminders, intake, and follow-up so fewer prospects fall through."],
+  ["Lead Response Systems", "Instant replies, qualification workflows, CRM routing, and personalized nurture sequences."],
+  ["Business Automation", "Connected workflows that reduce repetitive admin work across forms, email, payments, and operations."],
+];
+
+const process = [
+  ["01", "Discover", "We map the bottlenecks, customer journey, and highest-value automation opportunities."],
+  ["02", "Architect", "We design the page, integrations, data flow, and automation logic around your business."],
+  ["03", "Build", "We develop, test, optimize, and launch a reliable system your team can actually use."],
+];
+
+const plans = [
+  ["Launch", "$1,250+", "For a focused offer that needs a polished online presence.", ["One-page conversion site", "Lead capture form", "Mobile optimization", "Basic analytics"]],
+  ["Automate", "$2,500+", "For businesses ready to reduce response time and manual work.", ["Everything in Launch", "Booking or CRM integration", "Automated lead replies", "Workflow setup and testing"]],
+  ["Scale", "$5,000+", "For custom systems spanning multiple tools and customer touchpoints.", ["Custom automation architecture", "Advanced integrations", "Database and client portal options", "Launch support and optimization"]],
+];
+
+export default function Home() {
+  return (
+    <main>
+      <nav className="nav shell">
+        <a className="brand" href="#top" aria-label="Metaphor Consulting home"><span>M</span>Metaphor</a>
+        <div className="navlinks"><a href="#services">Services</a><a href="#process">Process</a><a href="#pricing">Pricing</a></div>
+        <a className="button button-small" href="#contact">Book a strategy call</a>
+      </nav>
+
+      <section className="hero shell" id="top">
+        <div className="hero-copy">
+          <p className="eyebrow">AI automation consulting · Atlanta</p>
+          <h1>Turn repetitive work into <em>intelligent systems.</em></h1>
+          <p className="lede">Metaphor Consulting builds AI-driven landing pages, booking systems, lead capture, and automated follow-up that save time, improve response speed, and increase profit.</p>
+          <div className="actions"><a className="button" href="#contact">Build my system</a><a className="text-link" href="#services">Explore services →</a></div>
+          <div className="proof"><div><strong>Faster</strong><span>lead response</span></div><div><strong>Less</strong><span>manual work</span></div><div><strong>More</strong><span>room to grow</span></div></div>
+        </div>
+        <div className="hero-visual" aria-label="Automation workflow illustration">
+          <div className="orb"></div>
+          <div className="system-card main-card"><p>METAPHOR OS</p><h3>New lead captured</h3><span className="status">● Automation running</span><div className="metric"><b>42 sec</b><small>response time</small></div></div>
+          <div className="system-card floating-card"><span>✓</span><div><b>Booking confirmed</b><small>Follow-up sent automatically</small></div></div>
+        </div>
+      </section>
+
+      <section className="marquee"><p>LANDING PAGES <span>✦</span> AUTOMATION <span>✦</span> LEAD CAPTURE <span>✦</span> BOOKING SYSTEMS <span>✦</span> AI WORKFLOWS</p></section>
+
+      <section className="section shell" id="services">
+        <div className="section-heading"><p className="eyebrow">What we build</p><h2>Your digital front door should do more than look good.</h2><p>We combine strategy, design, development, and automation into systems that actively move prospects toward becoming customers.</p></div>
+        <div className="service-grid">{services.map(([title, text], i) => <article className="service-card" key={title}><span>0{i + 1}</span><h3>{title}</h3><p>{text}</p></article>)}</div>
+      </section>
+
+      <section className="section dark-section" id="process"><div className="shell"><div className="section-heading"><p className="eyebrow">Our process</p><h2>From scattered tools to one clear system.</h2></div><div className="process-grid">{process.map(([num, title, text]) => <article key={num}><b>{num}</b><h3>{title}</h3><p>{text}</p></article>)}</div></div></section>
+
+      <section className="section shell founder"><div><p className="eyebrow">Founder-led consulting</p><h2>Strategy meets hands-on execution.</h2></div><div><p>Metaphor Consulting is led by Coco, an AI orchestrator, systems architect, consultant, and lead developer. Every engagement is shaped around practical business outcomes—not technology for technology’s sake.</p><p>Our mission is to make powerful automation accessible to growing businesses. Our vision is a future where small teams operate with the speed, consistency, and intelligence of much larger organizations.</p></div></section>
+
+      <section className="section shell" id="pricing"><div className="section-heading"><p className="eyebrow">Investment</p><h2>Start with the system your business needs now.</h2></div><div className="pricing-grid">{plans.map(([name, price, desc, features], i) => <article className={`price-card ${i === 1 ? "featured" : ""}`} key={name as string}>{i === 1 && <span className="popular">Most popular</span>}<h3>{name as string}</h3><strong>{price as string}</strong><p>{desc as string}</p><ul>{(features as string[]).map(item => <li key={item}>✓ {item}</li>)}</ul><a href="#contact" className={i === 1 ? "button" : "button outline"}>Get started</a></article>)}</div><p className="turnaround">Typical turnaround: 7–14 business days for focused builds; custom systems are scoped individually.</p></section>
+
+      <section className="cta shell" id="contact"><div><p className="eyebrow">Ready to automate?</p><h2>Build a business that responds—even when you are offline.</h2></div><a className="button light" href="mailto:hello@metaphorconsulting.ai">Start the conversation</a></section>
+
+      <footer className="shell"><a className="brand" href="#top"><span>M</span>Metaphor</a><p>AI automation and digital systems for growing businesses.</p><small>© 2026 Metaphor Consulting. All rights reserved.</small></footer>
+    </main>
+  );
+}
