@@ -1,6 +1,7 @@
 import BookingForm from "./BookingForm";
 import MobileBookingBar from "./MobileBookingBar";
 import MobileMenu from "./MobileMenu";
+import HeroSupportingCopy from "./HeroSupportingCopy";
 
 const services = [
   ["AI Landing Pages", "Conversion-focused pages with intelligent lead capture, persuasive copy, and fast mobile performance."],
@@ -35,7 +36,7 @@ export default function Home() {
         <div className="hero-copy">
           <p className="eyebrow">AI automation consulting · Atlanta</p>
           <h1>Turn repetitive work into <em>intelligent systems.</em></h1>
-          <p className="lede">Metaphor Consulting builds AI-driven landing pages, booking systems, lead capture, and automated follow-up that save time, improve response speed, and increase profit.</p>
+          <HeroSupportingCopy />
           <div className="actions"><a className="button" href="#booking">Book a free strategy call</a><a className="text-link" href="#services">Explore services →</a></div>
           <div className="proof"><div><strong>Faster</strong><span>lead response</span></div><div><strong>Less</strong><span>manual work</span></div><div><strong>More</strong><span>room to grow</span></div></div>
         </div>
