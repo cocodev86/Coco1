@@ -27,7 +27,7 @@ export default function Home() {
     <main className={orderStyles.page}>
       <nav className={`nav shell ${orderStyles.navigation}`} aria-label="Primary navigation">
         <a className="brand" href="#top" aria-label="Metaphor Consulting home"><span>M</span>Metaphor</a>
-        <div className="navlinks"><a href="#services">Services</a><a href="#process">Process</a><a href="#pricing">Pricing</a><a href="#booking">Booking</a></div>
+        <div className="navlinks"><a href="#services">Services</a><a href="#process">Process</a><a href="#pricing">Pricing</a><a href="/blog">Blog</a><a href="#booking">Booking</a></div>
         <a className="button button-small" href="#booking">Book a strategy call</a>
         <MobileMenu />
       </nav>
