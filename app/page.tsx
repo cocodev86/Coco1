@@ -2,6 +2,7 @@ import BookingForm from "./BookingForm";
 import MobileBookingBar from "./MobileBookingBar";
 import MobileMenu from "./MobileMenu";
 import HeroSupportingCopy from "./HeroSupportingCopy";
+import orderStyles from "./BookingOrder.module.css";
 
 const services = [
   ["AI Landing Pages", "Conversion-focused pages with intelligent lead capture, persuasive copy, and fast mobile performance."],
@@ -24,15 +25,15 @@ const plans = [
 
 export default function Home() {
   return (
-    <main>
-      <nav className="nav shell" aria-label="Primary navigation">
+    <main className={orderStyles.page}>
+      <nav className={`nav shell ${orderStyles.navigation}`} aria-label="Primary navigation">
         <a className="brand" href="#top" aria-label="Metaphor Consulting home"><span>M</span>Metaphor</a>
         <div className="navlinks"><a href="#services">Services</a><a href="#process">Process</a><a href="#pricing">Pricing</a><a href="#booking">Booking</a></div>
         <a className="button button-small" href="#booking">Book a strategy call</a>
         <MobileMenu />
       </nav>
 
-      <section className="hero shell" id="top">
+      <section className={`hero shell ${orderStyles.hero}`} id="top">
         <div className="hero-copy">
           <p className="eyebrow">AI automation consulting · Atlanta</p>
           <h1>Turn repetitive work into <em>intelligent systems.</em></h1>
@@ -47,22 +48,22 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="marquee"><p>LANDING PAGES <span>✦</span> AUTOMATION <span>✦</span> LEAD CAPTURE <span>✦</span> BOOKING SYSTEMS <span>✦</span> AI WORKFLOWS</p></section>
+      <section className={`marquee ${orderStyles.marquee}`}><p>LANDING PAGES <span>✦</span> AUTOMATION <span>✦</span> LEAD CAPTURE <span>✦</span> BOOKING SYSTEMS <span>✦</span> AI WORKFLOWS</p></section>
 
-      <section className="section shell" id="services">
+      <section className={`section shell ${orderStyles.services}`} id="services">
         <div className="section-heading"><p className="eyebrow">What we build</p><h2>Your digital front door should do more than look good.</h2><p>We combine strategy, design, development, and automation into systems that actively move prospects toward becoming customers.</p></div>
         <div className="service-grid">{services.map(([title, text], i) => <article className="service-card" key={title}><span>0{i + 1}</span><h3>{title}</h3><p>{text}</p></article>)}</div>
       </section>
 
-      <section className="section dark-section" id="process"><div className="shell"><div className="section-heading"><p className="eyebrow">Our process</p><h2>From scattered tools to one clear system.</h2></div><div className="process-grid">{process.map(([num, title, text]) => <article key={num}><b>{num}</b><h3>{title}</h3><p>{text}</p></article>)}</div></div></section>
+      <section className={`section dark-section ${orderStyles.process}`} id="process"><div className="shell"><div className="section-heading"><p className="eyebrow">Our process</p><h2>From scattered tools to one clear system.</h2></div><div className="process-grid">{process.map(([num, title, text]) => <article key={num}><b>{num}</b><h3>{title}</h3><p>{text}</p></article>)}</div></div></section>
 
-      <section className="section shell founder"><div><p className="eyebrow">Founder-led consulting</p><h2>Strategy meets hands-on execution.</h2></div><div><p>Metaphor Consulting is led by Coco, an AI orchestrator, systems architect, consultant, and lead developer. Every engagement is shaped around practical business outcomes—not technology for technology’s sake.</p><p>Our mission is to make powerful automation accessible to growing businesses. Our vision is a future where small teams operate with the speed, consistency, and intelligence of much larger organizations.</p></div></section>
+      <section className={`section shell founder ${orderStyles.founder}`}><div><p className="eyebrow">Founder-led consulting</p><h2>Strategy meets hands-on execution.</h2></div><div><p>Metaphor Consulting is led by Coco, an AI orchestrator, systems architect, consultant, and lead developer. Every engagement is shaped around practical business outcomes—not technology for technology’s sake.</p><p>Our mission is to make powerful automation accessible to growing businesses. Our vision is a future where small teams operate with the speed, consistency, and intelligence of much larger organizations.</p></div></section>
 
-      <section className="section shell" id="pricing"><div className="section-heading"><p className="eyebrow">Investment</p><h2>Start with the system your business needs now.</h2></div><div className="pricing-grid">{plans.map(([name, price, desc, features], i) => <article className={`price-card ${i === 1 ? "featured" : ""}`} key={name as string}>{i === 1 && <span className="popular">Most popular</span>}<h3>{name as string}</h3><strong>{price as string}</strong><p>{desc as string}</p><ul>{(features as string[]).map(item => <li key={item}>✓ {item}</li>)}</ul><a href="#booking" className={i === 1 ? "button" : "button outline"}>Get started</a></article>)}</div><p className="turnaround">Typical turnaround: 7–14 business days for focused builds; custom systems are scoped individually.</p></section>
+      <section className={`section shell ${orderStyles.pricing}`} id="pricing"><div className="section-heading"><p className="eyebrow">Investment</p><h2>Start with the system your business needs now.</h2></div><div className="pricing-grid">{plans.map(([name, price, desc, features], i) => <article className={`price-card ${i === 1 ? "featured" : ""}`} key={name as string}>{i === 1 && <span className="popular">Most popular</span>}<h3>{name as string}</h3><strong>{price as string}</strong><p>{desc as string}</p><ul>{(features as string[]).map(item => <li key={item}>✓ {item}</li>)}</ul><a href="#booking" className={i === 1 ? "button" : "button outline"}>Get started</a></article>)}</div><p className="turnaround">Typical turnaround: 7–14 business days for focused builds; custom systems are scoped individually.</p></section>
 
-      <section className="booking-section" id="booking"><div className="shell booking-layout"><div className="booking-copy"><p className="eyebrow">Book a free strategy call</p><h2>Let’s map the system your business needs next.</h2><p>Choose a preferred date and time window, tell us what you want to improve, and we’ll review your request before confirming the appointment.</p><div className="booking-points"><span>✓ No public email required</span><span>✓ Secure Supabase submission</span><span>✓ Mobile-friendly scheduling</span></div></div><BookingForm /></div></section>
+      <section className={`booking-section ${orderStyles.booking}`} id="booking"><div className="shell booking-layout"><div className="booking-copy"><p className="eyebrow">Book a free strategy call</p><h2>Let’s map the system your business needs next.</h2><p>Choose a preferred date and time window, tell us what you want to improve, and we’ll review your request before confirming the appointment.</p><div className="booking-points"><span>✓ No public email required</span><span>✓ Secure Supabase submission</span><span>✓ Mobile-friendly scheduling</span></div></div><BookingForm /></div></section>
 
-      <footer className="shell"><a className="brand" href="#top"><span>M</span>Metaphor</a><p>AI automation and digital systems for growing businesses.</p><small>© 2026 Metaphor Consulting. All rights reserved.</small></footer>
+      <footer className={`shell ${orderStyles.footer}`}><a className="brand" href="#top"><span>M</span>Metaphor</a><p>AI automation and digital systems for growing businesses.</p><small>© 2026 Metaphor Consulting. All rights reserved.</small></footer>
       <MobileBookingBar />
     </main>
   );
