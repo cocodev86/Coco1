@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { articles, categories } from "./data";
 import styles from "./blog.module.css";
 
 export const metadata: Metadata = {
@@ -7,45 +8,6 @@ export const metadata: Metadata = {
   description:
     "Practical guides, automation ideas, and digital growth strategies for small businesses building smarter systems.",
 };
-
-const categories = [
-  "AI Automation",
-  "Landing Pages",
-  "Lead Capture",
-  "Business Systems",
-  "Integrations",
-  "Small Business Growth",
-];
-
-const articles = [
-  {
-    category: "AI Automation",
-    title: "7 Business Tasks You Should Automate Before Hiring More Staff",
-    excerpt:
-      "A practical framework for identifying repetitive work, choosing the right tools, and calculating whether automation is worth the investment.",
-    readingTime: "8 min read",
-    date: "Coming soon",
-    accent: "purple",
-  },
-  {
-    category: "Lead Capture",
-    title: "Why Slow Lead Response Costs Small Businesses More Than They Think",
-    excerpt:
-      "Learn where promising inquiries disappear and how an automated response system can protect more of your marketing spend.",
-    readingTime: "6 min read",
-    date: "Coming soon",
-    accent: "lime",
-  },
-  {
-    category: "Landing Pages",
-    title: "Landing Page or Full Website: What Does Your Business Actually Need?",
-    excerpt:
-      "Choose the smallest digital system capable of achieving your current goal without paying for unnecessary pages or complexity.",
-    readingTime: "7 min read",
-    date: "Coming soon",
-    accent: "ink",
-  },
-];
 
 const guides = [
   ["01", "Automation readiness", "Determine which workflows are stable enough to automate and which need to be fixed first."],
@@ -103,7 +65,7 @@ export default function BlogHome() {
 
       <section className={styles.categoryBar} aria-label="Article categories">
         <div className={`shell ${styles.categoryTrack}`}>
-          {categories.map((category) => <a href="#latest" key={category}>{category}</a>)}
+          {categories.map((category) => <Link href={`/blog/category/${category.slug}`} key={category.slug}>{category.name}</Link>)}
         </div>
       </section>
 
@@ -113,21 +75,23 @@ export default function BlogHome() {
             <p className="eyebrow">Latest articles</p>
             <h2>Clear ideas you can put to work.</h2>
           </div>
-          <p>Each article will focus on a real operational decision: what to automate, what to build, what to measure, and what to leave alone.</p>
+          <p>Each article focuses on a real operational decision: what to automate, what to build, what to measure, and what to leave alone.</p>
         </div>
 
         <div className={styles.articleGrid}>
           {articles.map((article) => (
-            <article className={styles.articleCard} key={article.title}>
+            <article className={styles.articleCard} key={article.slug}>
               <div className={`${styles.articleVisual} ${styles[article.accent]}`}>
-                <span>{article.category}</span>
+                <Link href={`/blog/category/${article.categorySlug}`}>{article.category}</Link>
                 <strong aria-hidden="true">↗</strong>
               </div>
               <div className={styles.articleBody}>
                 <p className={styles.meta}>{article.date} · {article.readingTime}</p>
                 <h3>{article.title}</h3>
                 <p>{article.excerpt}</p>
-                <span className={styles.comingSoon}>Article in production</span>
+                <div className={styles.tagList}>
+                  {article.tags.map((tag) => <Link key={tag} href={`/blog/tag/${tag}`}>#{tag}</Link>)}
+                </div>
               </div>
             </article>
           ))}
@@ -141,7 +105,7 @@ export default function BlogHome() {
               <p className="eyebrow">Popular guide tracks</p>
               <h2>Learn the system behind the software.</h2>
             </div>
-            <p>Metaphor content will prioritize business logic and decision-making—not shallow lists of AI tools.</p>
+            <p>Metaphor content prioritizes business logic and decision-making—not shallow lists of AI tools.</p>
           </div>
           <div className={styles.guideGrid}>
             {guides.map(([number, title, description]) => (
