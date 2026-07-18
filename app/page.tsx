@@ -1,5 +1,6 @@
 import BookingForm from "./BookingForm";
 import MobileBookingBar from "./MobileBookingBar";
+import MobileMenu from "./MobileMenu";
 
 const services = [
   ["AI Landing Pages", "Conversion-focused pages with intelligent lead capture, persuasive copy, and fast mobile performance."],
@@ -23,10 +24,11 @@ const plans = [
 export default function Home() {
   return (
     <main>
-      <nav className="nav shell">
+      <nav className="nav shell" aria-label="Primary navigation">
         <a className="brand" href="#top" aria-label="Metaphor Consulting home"><span>M</span>Metaphor</a>
         <div className="navlinks"><a href="#services">Services</a><a href="#process">Process</a><a href="#pricing">Pricing</a><a href="#booking">Booking</a></div>
         <a className="button button-small" href="#booking">Book a strategy call</a>
+        <MobileMenu />
       </nav>
 
       <section className="hero shell" id="top">
