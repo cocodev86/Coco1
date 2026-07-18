@@ -56,7 +56,7 @@ export default function BookingForm() {
     if (!form) return false;
 
     const nextErrors: Partial<Record<FieldName, string>> = {};
-    let firstInvalid: FormControl | null = null;
+    const invalidFields: FormControl[] = [];
 
     names.forEach((name) => {
       const field = form.elements.namedItem(name);
@@ -64,7 +64,7 @@ export default function BookingForm() {
       const error = getFieldError(field);
       if (error) {
         nextErrors[name] = error;
-        firstInvalid ??= field;
+        invalidFields.push(field);
       }
     });
 
@@ -74,6 +74,7 @@ export default function BookingForm() {
       return { ...retained, ...nextErrors };
     });
 
+    const firstInvalid = invalidFields[0];
     if (firstInvalid) {
       firstInvalid.focus();
       return false;
