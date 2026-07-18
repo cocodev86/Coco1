@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import styles from "./MobileMenu.module.css";
 
 const links = [
   ["Services", "#services"],
@@ -44,10 +45,10 @@ export default function MobileMenu() {
   }, [open]);
 
   return (
-    <div className="mobile-nav">
+    <div className={styles.root}>
       <button
         ref={buttonRef}
-        className="mobile-menu-button"
+        className={styles.button}
         type="button"
         aria-label={open ? "Close navigation menu" : "Open navigation menu"}
         aria-expanded={open}
@@ -62,7 +63,7 @@ export default function MobileMenu() {
       <div
         ref={menuRef}
         id="mobile-navigation"
-        className={`mobile-menu${open ? " is-open" : ""}`}
+        className={`${styles.menu}${open ? ` ${styles.open}` : ""}`}
       >
         <nav aria-label="Mobile navigation">
           {links.map(([label, href]) => (
@@ -70,7 +71,7 @@ export default function MobileMenu() {
               {label}
             </a>
           ))}
-          <a className="mobile-menu-cta" href="#booking" onClick={() => setOpen(false)}>
+          <a className={styles.cta} href="#booking" onClick={() => setOpen(false)}>
             Book a strategy call
           </a>
         </nav>
