@@ -26,6 +26,7 @@ export default function BlogHome() {
           <Link href="/">Home</Link>
           <a href="#latest">Articles</a>
           <a href="#guides">Guides</a>
+          <Link href="/blog/search">Search</Link>
         </div>
         <Link className="button button-small" href="/#booking">
           Book a strategy call
@@ -43,7 +44,7 @@ export default function BlogHome() {
           </p>
           <div className={styles.heroActions}>
             <a className="button" href="#latest">Explore the latest insights</a>
-            <Link className={styles.secondaryLink} href="/#booking">Discuss your workflow →</Link>
+            <Link className={styles.secondaryLink} href="/blog/search">Search all insights →</Link>
           </div>
         </div>
 
