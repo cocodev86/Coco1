@@ -54,7 +54,7 @@ export default function Home() {
 
       <section className="section shell" id="pricing"><div className="section-heading"><p className="eyebrow">Investment</p><h2>Start with the system your business needs now.</h2></div><div className="pricing-grid">{plans.map(([name, price, desc, features], i) => <article className={`price-card ${i === 1 ? "featured" : ""}`} key={name as string}>{i === 1 && <span className="popular">Most popular</span>}<h3>{name as string}</h3><strong>{price as string}</strong><p>{desc as string}</p><ul>{(features as string[]).map(item => <li key={item}>✓ {item}</li>)}</ul><a href="#contact" className={i === 1 ? "button" : "button outline"}>Get started</a></article>)}</div><p className="turnaround">Typical turnaround: 7–14 business days for focused builds; custom systems are scoped individually.</p></section>
 
-      <section className="cta shell" id="contact"><div><p className="eyebrow">Ready to automate?</p><h2>Build a business that responds—even when you are offline.</h2></div><a className="button light" href="mailto:hello@metaphorconsulting.ai">Start the conversation</a></section>
+      <section className="cta shell" id="contact"><div><p className="eyebrow">Ready to automate?</p><h2>Build a business that responds—even when you are offline.</h2></div><a className="button light" href="mailto:Cococonsult1@outlook.com">Start the conversation</a></section>
 
       <footer className="shell"><a className="brand" href="#top"><span>M</span>Metaphor</a><p>AI automation and digital systems for growing businesses.</p><small>© 2026 Metaphor Consulting. All rights reserved.</small></footer>
     </main>
