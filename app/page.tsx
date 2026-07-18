@@ -3,14 +3,16 @@ import MobileBookingBar from "./MobileBookingBar";
 import MobileMenu from "./MobileMenu";
 import HeroSupportingCopy from "./HeroSupportingCopy";
 import PricingCards from "./PricingCards";
+import ServiceIcon from "./ServiceIcon";
 import orderStyles from "./BookingOrder.module.css";
+import serviceStyles from "./ServiceIcons.module.css";
 
 const services = [
-  ["AI Landing Pages", "Conversion-focused pages with intelligent lead capture, persuasive copy, and fast mobile performance."],
-  ["Booking Automation", "Automated scheduling, confirmations, reminders, intake, and follow-up so fewer prospects fall through."],
-  ["Lead Response Systems", "Instant replies, qualification workflows, CRM routing, and personalized nurture sequences."],
-  ["Business Automation", "Connected workflows that reduce repetitive admin work across forms, email, payments, and operations."],
-];
+  ["landing", "AI Landing Pages", "Conversion-focused pages with intelligent lead capture, persuasive copy, and fast mobile performance."],
+  ["booking", "Booking Automation", "Automated scheduling, confirmations, reminders, intake, and follow-up so fewer prospects fall through."],
+  ["response", "Lead Response Systems", "Instant replies, qualification workflows, CRM routing, and personalized nurture sequences."],
+  ["automation", "Business Automation", "Connected workflows that reduce repetitive admin work across forms, email, payments, and operations."],
+] as const;
 
 const process = [
   ["01", "Discover", "We map the bottlenecks, customer journey, and highest-value automation opportunities."],
@@ -47,7 +49,7 @@ export default function Home() {
 
       <section className={`section shell ${orderStyles.services}`} id="services">
         <div className="section-heading"><p className="eyebrow">What we build</p><h2>Your digital front door should do more than look good.</h2><p>We combine strategy, design, development, and automation into systems that actively move prospects toward becoming customers.</p></div>
-        <div className="service-grid">{services.map(([title, text], i) => <article className="service-card" key={title}><span>0{i + 1}</span><h3>{title}</h3><p>{text}</p></article>)}</div>
+        <div className="service-grid">{services.map(([icon, title, text], i) => <article className="service-card" key={title}><div className={serviceStyles.header}><span className={serviceStyles.icon}><ServiceIcon name={icon} /></span><span className={serviceStyles.number}>0{i + 1}</span></div><h3>{title}</h3><p>{text}</p></article>)}</div>
       </section>
 
       <section className={`section dark-section ${orderStyles.process}`} id="process"><div className="shell"><div className="section-heading"><p className="eyebrow">Our process</p><h2>From scattered tools to one clear system.</h2></div><div className="process-grid">{process.map(([num, title, text]) => <article key={num}><b>{num}</b><h3>{title}</h3><p>{text}</p></article>)}</div></div></section>
