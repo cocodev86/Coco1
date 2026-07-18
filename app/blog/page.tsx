@@ -20,7 +20,7 @@ export default function BlogHome() {
       <nav className={`shell ${styles.nav}`} aria-label="Blog navigation">
         <Link className="brand" href="/" aria-label="Metaphor Consulting home"><span>M</span>Metaphor</Link>
         <div className={styles.navLinks}>
-          <Link href="/">Home</Link><a href="#latest">Articles</a><a href="#guides">Guides</a><Link href="/blog/search">Search</Link>
+          <Link href="/">Home</Link><a href="#latest">Articles</a><Link href="/blog/case-studies">Case studies</Link><a href="#guides">Guides</a><Link href="/blog/search">Search</Link>
         </div>
         <Link className="button button-small" href="/#booking">Book a strategy call</Link>
       </nav>
@@ -55,6 +55,18 @@ export default function BlogHome() {
               </div>
             </article>
           ))}
+        </div>
+      </section>
+
+      <section className={`shell ${styles.newsletter}`}>
+        <div>
+          <p className="eyebrow">Case studies</p>
+          <h2>See the architecture behind a better workflow.</h2>
+          <p>Explore representative system designs showing the bottleneck, automation plan, connected tools, and target operational outcomes.</p>
+        </div>
+        <div className={styles.newsletterStatus}>
+          <span>System breakdowns</span>
+          <strong><Link href="/blog/case-studies">Explore case studies →</Link></strong>
         </div>
       </section>
 
