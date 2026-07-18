@@ -83,6 +83,11 @@ export default function BookingForm() {
 
   return (
     <form ref={formRef} className="booking-form" onSubmit={handleSubmit}>
+      <div className={styles.progressHeader} aria-live="polite" aria-atomic="true">
+        <p className={styles.progressCount}>Step {step} of 2</p>
+        <p className={styles.progressTitle}>{step === 1 ? "Contact and service" : "Date, budget, and details"}</p>
+      </div>
+
       <div className={styles.progress} aria-label={`Step ${step} of 2`}>
         <div className={`${styles.step} ${step === 1 ? styles.active : styles.complete}`}><span>{step === 2 ? "✓" : "1"}</span>Contact and service</div>
         <div className={`${styles.step} ${step === 2 ? styles.active : ""}`}><span>2</span>Date and details</div>
