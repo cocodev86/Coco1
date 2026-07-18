@@ -5,6 +5,7 @@ import HeroSupportingCopy from "./HeroSupportingCopy";
 import PricingCards from "./PricingCards";
 import PricingFaq from "./PricingFaq";
 import ServiceIcon from "./ServiceIcon";
+import TrackedLink from "./TrackedLink";
 import orderStyles from "./BookingOrder.module.css";
 import serviceStyles from "./ServiceIcons.module.css";
 
@@ -36,7 +37,7 @@ export default function Home() {
           <p className="eyebrow">AI automation consulting · Atlanta</p>
           <h1>Turn repetitive work into <em>intelligent systems.</em></h1>
           <HeroSupportingCopy />
-          <div className="actions"><a className="button" href="#booking">Book a free strategy call</a><a className="text-link" href="#services">Explore services →</a></div>
+          <div className="actions"><TrackedLink className="button" href="#booking" eventName="Hero CTA Click" eventData={{ location: "hero", label: "Book a free strategy call" }}>Book a free strategy call</TrackedLink><a className="text-link" href="#services">Explore services →</a></div>
           <div className="proof"><div><strong>Faster</strong><span>lead response</span></div><div><strong>Less</strong><span>manual work</span></div><div><strong>More</strong><span>room to grow</span></div></div>
         </div>
         <div className="hero-visual" aria-label="Automation workflow illustration">
