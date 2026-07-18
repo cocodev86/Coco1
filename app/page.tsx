@@ -3,6 +3,7 @@ import MobileBookingBar from "./MobileBookingBar";
 import MobileMenu from "./MobileMenu";
 import HeroSupportingCopy from "./HeroSupportingCopy";
 import PricingCards from "./PricingCards";
+import PricingFaq from "./PricingFaq";
 import ServiceIcon from "./ServiceIcon";
 import orderStyles from "./BookingOrder.module.css";
 import serviceStyles from "./ServiceIcons.module.css";
@@ -56,7 +57,7 @@ export default function Home() {
 
       <section className={`section shell founder ${orderStyles.founder}`}><div><p className="eyebrow">Founder-led consulting</p><h2>Strategy meets hands-on execution.</h2></div><div><p>Metaphor Consulting is led by Coco, an AI orchestrator, systems architect, consultant, and lead developer. Every engagement is shaped around practical business outcomes—not technology for technology’s sake.</p><p>Our mission is to make powerful automation accessible to growing businesses. Our vision is a future where small teams operate with the speed, consistency, and intelligence of much larger organizations.</p></div></section>
 
-      <section className={`section shell ${orderStyles.pricing}`} id="pricing"><div className="section-heading"><p className="eyebrow">Investment</p><h2>Start with the system your business needs now.</h2></div><PricingCards /><p className="turnaround">Typical turnaround: 7–14 business days for focused builds; custom systems are scoped individually.</p></section>
+      <section className={`section shell ${orderStyles.pricing}`} id="pricing"><div className="section-heading"><p className="eyebrow">Investment</p><h2>Start with the system your business needs now.</h2></div><PricingCards /><p className="turnaround">Typical turnaround: 7–14 business days for focused builds; custom systems are scoped individually.</p><PricingFaq /></section>
 
       <section className={`booking-section ${orderStyles.booking}`} id="booking"><div className="shell booking-layout"><div className="booking-copy"><p className="eyebrow">Book a free strategy call</p><h2>Let’s map the system your business needs next.</h2><p>Choose a preferred date and time window, tell us what you want to improve, and we’ll review your request before confirming the appointment.</p><div className="booking-points"><span>✓ No public email required</span><span>✓ Secure Supabase submission</span><span>✓ Mobile-friendly scheduling</span></div></div><BookingForm /></div></section>
 
