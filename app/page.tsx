@@ -2,6 +2,7 @@ import BookingForm from "./BookingForm";
 import MobileBookingBar from "./MobileBookingBar";
 import MobileMenu from "./MobileMenu";
 import HeroSupportingCopy from "./HeroSupportingCopy";
+import PricingCards from "./PricingCards";
 import orderStyles from "./BookingOrder.module.css";
 
 const services = [
@@ -15,12 +16,6 @@ const process = [
   ["01", "Discover", "We map the bottlenecks, customer journey, and highest-value automation opportunities."],
   ["02", "Architect", "We design the page, integrations, data flow, and automation logic around your business."],
   ["03", "Build", "We develop, test, optimize, and launch a reliable system your team can actually use."],
-];
-
-const plans = [
-  ["Launch", "$1,250+", "For a focused offer that needs a polished online presence.", ["One-page conversion site", "Lead capture form", "Mobile optimization", "Basic analytics"]],
-  ["Automate", "$2,500+", "For businesses ready to reduce response time and manual work.", ["Everything in Launch", "Booking or CRM integration", "Automated lead replies", "Workflow setup and testing"]],
-  ["Scale", "$5,000+", "For custom systems spanning multiple tools and customer touchpoints.", ["Custom automation architecture", "Advanced integrations", "Database and client portal options", "Launch support and optimization"]],
 ];
 
 export default function Home() {
@@ -59,7 +54,7 @@ export default function Home() {
 
       <section className={`section shell founder ${orderStyles.founder}`}><div><p className="eyebrow">Founder-led consulting</p><h2>Strategy meets hands-on execution.</h2></div><div><p>Metaphor Consulting is led by Coco, an AI orchestrator, systems architect, consultant, and lead developer. Every engagement is shaped around practical business outcomes—not technology for technology’s sake.</p><p>Our mission is to make powerful automation accessible to growing businesses. Our vision is a future where small teams operate with the speed, consistency, and intelligence of much larger organizations.</p></div></section>
 
-      <section className={`section shell ${orderStyles.pricing}`} id="pricing"><div className="section-heading"><p className="eyebrow">Investment</p><h2>Start with the system your business needs now.</h2></div><div className="pricing-grid">{plans.map(([name, price, desc, features], i) => <article className={`price-card ${i === 1 ? "featured" : ""}`} key={name as string}>{i === 1 && <span className="popular">Most popular</span>}<h3>{name as string}</h3><strong>{price as string}</strong><p>{desc as string}</p><ul>{(features as string[]).map(item => <li key={item}>✓ {item}</li>)}</ul><a href="#booking" className={i === 1 ? "button" : "button outline"}>Get started</a></article>)}</div><p className="turnaround">Typical turnaround: 7–14 business days for focused builds; custom systems are scoped individually.</p></section>
+      <section className={`section shell ${orderStyles.pricing}`} id="pricing"><div className="section-heading"><p className="eyebrow">Investment</p><h2>Start with the system your business needs now.</h2></div><PricingCards /><p className="turnaround">Typical turnaround: 7–14 business days for focused builds; custom systems are scoped individually.</p></section>
 
       <section className={`booking-section ${orderStyles.booking}`} id="booking"><div className="shell booking-layout"><div className="booking-copy"><p className="eyebrow">Book a free strategy call</p><h2>Let’s map the system your business needs next.</h2><p>Choose a preferred date and time window, tell us what you want to improve, and we’ll review your request before confirming the appointment.</p><div className="booking-points"><span>✓ No public email required</span><span>✓ Secure Supabase submission</span><span>✓ Mobile-friendly scheduling</span></div></div><BookingForm /></div></section>
 
