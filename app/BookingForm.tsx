@@ -1,6 +1,7 @@
 "use client";
 
-import { FocusEvent, FormEvent, useMemo, useRef, useState } from "react";
+import { track } from "@vercel/analytics";
+import { FocusEvent, FormEvent, useEffect, useMemo, useRef, useState } from "react";
 import styles from "./BookingForm.module.css";
 
 const BOOKING_ENDPOINT = "https://pqyigabrlnxcruzzkxuc.supabase.co/functions/v1/submit-booking";
@@ -49,7 +50,35 @@ export default function BookingForm() {
   const [message, setMessage] = useState("");
   const [errors, setErrors] = useState<Partial<Record<FieldName, string>>>({});
   const formRef = useRef<HTMLFormElement>(null);
+  const startedRef = useRef(false);
+  const completedRef = useRef(false);
+  const abandonedRef = useRef(false);
   const minDate = useMemo(() => new Date().toISOString().split("T")[0], []);
+
+  useEffect(() => {
+    const reportAbandonment = () => {
+      if (!startedRef.current || completedRef.current || abandonedRef.current) return;
+      abandonedRef.current = true;
+      track("Form Abandonment", { step });
+    };
+
+    const handleVisibilityChange = () => {
+      if (document.visibilityState === "hidden") reportAbandonment();
+    };
+
+    window.addEventListener("pagehide", reportAbandonment);
+    document.addEventListener("visibilitychange", handleVisibilityChange);
+    return () => {
+      window.removeEventListener("pagehide", reportAbandonment);
+      document.removeEventListener("visibilitychange", handleVisibilityChange);
+    };
+  }, [step]);
+
+  function markFormStarted() {
+    if (startedRef.current) return;
+    startedRef.current = true;
+    track("Form Start", { location: "booking" });
+  }
 
   function validateFields(names: readonly FieldName[]) {
     const form = formRef.current;
@@ -136,6 +165,8 @@ export default function BookingForm() {
       });
 
       if (!response.ok) throw new Error("Booking request could not be submitted.");
+      completedRef.current = true;
+      track("Form Completion", { service: payload.service, budget: payload.budget || "Not provided" });
       formElement.reset();
       setErrors({});
       setStep(1);
@@ -164,7 +195,7 @@ export default function BookingForm() {
         <div className={styles.trustItem}><span className={styles.trustIcon} aria-hidden="true">✓</span><span>Secure submission</span></div>
       </div>
 
-      <form ref={formRef} className="booking-form" onSubmit={handleSubmit} noValidate>
+      <form ref={formRef} className="booking-form" onSubmit={handleSubmit} onFocusCapture={markFormStarted} onChangeCapture={markFormStarted} noValidate>
         <div className={styles.progressHeader} aria-live="polite" aria-atomic="true">
           <p className={styles.progressCount}>Step {step} of 2</p>
           <p className={styles.progressTitle}>{step === 1 ? "Contact and service" : "Date, budget, and details"}</p>
