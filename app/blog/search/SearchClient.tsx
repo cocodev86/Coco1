@@ -35,29 +35,13 @@ export default function SearchClient({ articles }: SearchClientProps) {
   return (
     <section className={styles.searchArea} aria-labelledby="search-heading">
       <div className={styles.searchBox}>
-        <label htmlFor="blog-search" id="search-heading">
-          Search Metaphor insights
-        </label>
+        <label htmlFor="blog-search" id="search-heading">Search Metaphor insights</label>
         <div className={styles.inputWrap}>
           <span aria-hidden="true">⌕</span>
-          <input
-            id="blog-search"
-            type="search"
-            value={query}
-            onChange={(event) => setQuery(event.target.value)}
-            placeholder="Try automation, CRM, conversion..."
-            autoComplete="off"
-          />
-          {query && (
-            <button type="button" onClick={() => setQuery("")}>
-              Clear
-            </button>
-          )}
+          <input id="blog-search" type="search" value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Try automation, CRM, conversion..." autoComplete="off" />
+          {query && <button type="button" onClick={() => setQuery("")}>Clear</button>}
         </div>
-        <p aria-live="polite">
-          {results.length} {results.length === 1 ? "article" : "articles"}
-          {normalizedQuery ? ` matching “${query.trim()}”` : " available"}
-        </p>
+        <p aria-live="polite">{results.length} {results.length === 1 ? "article" : "articles"}{normalizedQuery ? ` matching “${query.trim()}”` : " available"}</p>
       </div>
 
       {results.length > 0 ? (
@@ -65,21 +49,13 @@ export default function SearchClient({ articles }: SearchClientProps) {
           {results.map((article) => (
             <article className={styles.resultCard} key={article.slug}>
               <div className={styles.resultTopline}>
-                <Link href={`/blog/category/${article.categorySlug}`}>
-                  {article.category}
-                </Link>
+                <Link href={`/blog/category/${article.categorySlug}`}>{article.category}</Link>
                 <span>{article.readingTime}</span>
               </div>
-              <h2>{article.title}</h2>
+              <h2><Link href={`/blog/${article.slug}`}>{article.title}</Link></h2>
               <p>{article.excerpt}</p>
-              <div className={styles.tags}>
-                {article.tags.map((tag) => (
-                  <Link key={tag} href={`/blog/tag/${tag}`}>
-                    #{tag}
-                  </Link>
-                ))}
-              </div>
-              <span className={styles.status}>Article in production</span>
+              <div className={styles.tags}>{article.tags.map((tag) => <Link key={tag} href={`/blog/tag/${tag}`}>#{tag}</Link>)}</div>
+              <Link className={styles.status} href={`/blog/${article.slug}`}>Read article →</Link>
             </article>
           ))}
         </div>
@@ -87,9 +63,7 @@ export default function SearchClient({ articles }: SearchClientProps) {
         <div className={styles.emptyState}>
           <strong>No matching articles yet.</strong>
           <p>Try a broader term, a category name, or one of the tags shown across the blog.</p>
-          <button type="button" onClick={() => setQuery("")}>
-            Reset search
-          </button>
+          <button type="button" onClick={() => setQuery("")}>Reset search</button>
         </div>
       )}
     </section>
