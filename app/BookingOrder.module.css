@@ -1,0 +1,24 @@
+.page {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+.navigation { order: 1; }
+.hero { order: 2; }
+.marquee { order: 3; }
+.booking { order: 4; }
+.services { order: 5; }
+.process { order: 6; }
+.founder { order: 7; }
+.pricing { order: 8; }
+.footer { order: 9; }
+
+@media (min-width: 700px) {
+  .services { order: 4; }
+  .process { order: 5; }
+  .founder { order: 6; }
+  .pricing { order: 7; }
+  .booking { order: 8; }
+  .footer { order: 9; }
+}
