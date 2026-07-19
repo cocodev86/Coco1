@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import BrandLink from "@/components/branding/BrandLink";
 import RelatedArticles from "../RelatedArticles";
 import { articles } from "../data";
 import styles from "../article.module.css";
@@ -63,7 +64,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
 
       <nav className={`shell ${styles.nav}`} aria-label="Article navigation">
-        <Link className="brand" href="/"><span>M</span>Metaphor</Link>
+        <BrandLink className="brand" href="/" variant="compactDark" logoWidth={176} priority />
         <div className={styles.navLinks}>
           <Link href="/blog">Blog</Link>
           <Link href="/blog/case-studies">Case studies</Link>
@@ -144,7 +145,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
       <div className="shell"><RelatedArticles article={article} /></div>
 
       <footer className={`shell ${styles.footer}`}>
-        <Link className="brand" href="/"><span>M</span>Metaphor</Link>
+        <BrandLink className="brand" href="/" variant="compactDark" logoWidth={176} />
         <p>AI automation insights and digital systems for growing businesses.</p>
         <small>© 2026 Metaphor Consulting. All rights reserved.</small>
       </footer>
