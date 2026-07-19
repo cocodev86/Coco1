@@ -1,9 +1,13 @@
 # Documentation Contributor Guide
 
-**Document ID:** DOCS-0001  
-**Version:** 1.0.0  
-**Owner:** Knowledge Curator  
-**Status:** Active  
+**Document ID:** DOCS-0001
+
+**Version:** 1.0.0
+
+**Owner:** Knowledge Curator
+
+**Status:** Active
+
 **Classification:** Internal
 
 ## Purpose
