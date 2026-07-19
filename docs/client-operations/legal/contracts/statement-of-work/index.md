@@ -4,15 +4,19 @@
 **Version:** 1.0  
 **Owner:** Metaphor Automation Consulting  
 **Agreement status:** Client-facing template  
-**Repository publication status:** Withheld pending structurally valid regenerated PDF  
-**Repository classification:** Public reusable-template metadata
+**Repository publication status:** Validated PDF available  
+**Repository classification:** Public reusable template
 
-The SOW defines project-specific client information, objectives, services, scope, exclusions, deliverables, client responsibilities, timeline, fees, payment schedule, third-party services, acceptance criteria, revisions, warranty, support, AI services, special terms, and signatures. It is intended to be incorporated into and governed by the applicable Master Services Agreement.
+This template records project scope, deliverables, schedule, fees, responsibilities, acceptance, support, and signatures.
 
-## Distribution status
+## Distribution asset
 
-The previously published PDF was removed from the remediation branch because its cross-reference table failed structural review. It must not be used for execution, review, or client distribution.
+[Open the Statement of Work PDF](./metaphor-statement-of-work-v1.0.pdf)
 
-Regenerate the PDF from the authoritative source, then complete structural, rendering, text-completeness, page-count, checksum, and privacy validation.
+## Publication record
 
-**Expected asset name:** `metaphor-statement-of-work-v1.0.pdf`
+- Pages: 3
+- Form fields: 0
+- Size: 4737 bytes
+- SHA-256: `c6f0028bf65705d109452d75a264c4d1a34f7a1f71fdaa1ce84ec72059312a06`
+- Technical status: Regenerated, structurally openable, text-extractable, unencrypted, and verified in two renderers
