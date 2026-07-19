@@ -15,7 +15,7 @@ export const brand = {
   logos: {
     primary: "/brand/logos/metaphor-primary.svg",
     horizontal: "/brand/logos/metaphor-horizontal.svg",
-    vertical: "/brand/logos/metaphor-vertical.svg",
+    vertical: "/brand/logos/metaphor-primary.svg",
     wordmark: "/brand/logos/metaphor-wordmark.svg",
     icon: "/brand/logos/metaphor-icon.svg",
     monogram: "/brand/logos/metaphor-monogram.svg",
@@ -23,11 +23,11 @@ export const brand = {
     filled: "/brand/logos/metaphor-filled.svg",
     light: "/brand/logos/metaphor-light.svg",
     dark: "/brand/logos/metaphor-dark.svg",
-    mono: "/brand/logos/metaphor-monochrome.svg",
+    mono: "/brand/logos/metaphor-filled.svg",
   },
   social: {
-    openGraph: "/brand/social/og-image.svg",
-    twitter: "/brand/social/twitter-card.svg",
+    openGraph: "/brand/logos/metaphor-primary.svg",
+    twitter: "/brand/logos/metaphor-primary.svg",
   },
 } as const;
 
