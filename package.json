@@ -13,7 +13,8 @@
     "typecheck": "tsc --noEmit",
     "test": "node --test tests/*.test.mjs",
     "validate:assets": "node scripts/validate-public-assets.mjs",
-    "validate": "npm run lint && npm run typecheck && npm run test && npm run validate:assets && npm run build"
+    "validate:brand": "node scripts/validate-brand-assets.mjs",
+    "validate": "npm run lint && npm run typecheck && npm run test && npm run validate:assets && npm run validate:brand && npm run build"
   },
   "dependencies": {
     "@types/node": "^22.10.0",
