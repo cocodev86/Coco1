@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Logo from "@/components/branding/Logo";
 import MobileMenu from "../MobileMenu";
 import { articles, categories } from "./data";
 import styles from "./blog.module.css";
 
 export const metadata: Metadata = {
-  title: "AI Automation Insights | Metaphor Consulting",
+  title: "AI Automation Insights",
   description: "Practical guides, automation ideas, and digital growth strategies for small businesses building smarter systems.",
 };
 
@@ -27,7 +28,7 @@ export default function BlogHome() {
   return (
     <main className={styles.page}>
       <nav className={`nav shell ${styles.nav}`} aria-label="Primary navigation">
-        <Link className="brand" href="/" aria-label="Metaphor Consulting home"><span>M</span>Metaphor</Link>
+        <Link className="brand brand-logo-link" href="/" aria-label="Metaphor Automation Consulting home"><Logo variant="horizontal" width={230} height={48} priority /></Link>
         <div className="navlinks">
           {publicMenu.map((item) => <Link key={item.href} href={item.href}>{item.label}</Link>)}
         </div>
@@ -78,7 +79,7 @@ export default function BlogHome() {
       <section className={`shell ${styles.newsletter}`}><div><p className="eyebrow">The Metaphor memo</p><h2>One useful systems idea at a time.</h2><p>Choose your topics, read the public archive, and subscribe without daily noise or shallow trend summaries.</p></div><div className={styles.newsletterStatus}><span>2 launch issues</span><strong><Link href="/newsletter">Read and subscribe →</Link></strong></div></section>
 
       <section className={styles.ctaSection}><div className={`shell ${styles.ctaInner}`}><div><p className="eyebrow">Need a system now?</p><h2>Turn the next good idea into a working business process.</h2></div><Link className="button" href="/#booking">Book a free strategy call</Link></div></section>
-      <footer className={`shell ${styles.footer}`}><Link className="brand" href="/"><span>M</span>Metaphor</Link><p>AI automation insights and digital systems for growing businesses.</p><small>© 2026 Metaphor Consulting. All rights reserved.</small></footer>
+      <footer className={`shell ${styles.footer}`}><Link className="brand brand-logo-link" href="/" aria-label="Metaphor Automation Consulting home"><Logo variant="horizontal" width={220} height={46} /></Link><p>AI automation insights and digital systems for growing businesses.</p><small>© 2026 Metaphor Automation Consulting. All rights reserved.</small></footer>
     </main>
   );
 }
