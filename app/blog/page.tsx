@@ -20,7 +20,7 @@ export default function BlogHome() {
       <nav className={`shell ${styles.nav}`} aria-label="Blog navigation">
         <Link className="brand" href="/" aria-label="Metaphor Consulting home"><span>M</span>Metaphor</Link>
         <div className={styles.navLinks}>
-          <Link href="/">Home</Link><a href="#latest">Articles</a><Link href="/blog/case-studies">Case studies</Link><a href="#guides">Guides</a><Link href="/blog/search">Search</Link>
+          <Link href="/">Home</Link><a href="#latest">Articles</a><Link href="/automation-library">Automation library</Link><Link href="/blog/case-studies">Case studies</Link><Link href="/blog/search">Search</Link>
         </div>
         <Link className="button button-small" href="/#booking">Book a strategy call</Link>
       </nav>
@@ -30,7 +30,7 @@ export default function BlogHome() {
           <p className="eyebrow">Metaphor field notes</p>
           <h1>Build a smarter business, <em>one system at a time.</em></h1>
           <p>Practical automation advice, conversion strategy, and clear explanations for growing businesses that want better systems without unnecessary complexity.</p>
-          <div className={styles.heroActions}><a className="button" href="#latest">Explore the latest insights</a><Link className={styles.secondaryLink} href="/blog/search">Search all insights →</Link></div>
+          <div className={styles.heroActions}><a className="button" href="#latest">Explore the latest insights</a><Link className={styles.secondaryLink} href="/automation-library">Browse automation playbooks →</Link></div>
         </div>
 
         <aside className={styles.featured} aria-label="Featured article">
@@ -59,15 +59,13 @@ export default function BlogHome() {
       </section>
 
       <section className={`shell ${styles.newsletter}`}>
-        <div>
-          <p className="eyebrow">Case studies</p>
-          <h2>See the architecture behind a better workflow.</h2>
-          <p>Explore representative system designs showing the bottleneck, automation plan, connected tools, and target operational outcomes.</p>
-        </div>
-        <div className={styles.newsletterStatus}>
-          <span>System breakdowns</span>
-          <strong><Link href="/blog/case-studies">Explore case studies →</Link></strong>
-        </div>
+        <div><p className="eyebrow">Automation library</p><h2>Start with a proven workflow pattern.</h2><p>Search implementation playbooks by bottleneck, industry, and software stack. Each page includes build scope, integrations, time-saved ranges, and the workflow architecture.</p></div>
+        <div className={styles.newsletterStatus}><span>6 launch playbooks</span><strong><Link href="/automation-library">Explore the library →</Link></strong></div>
+      </section>
+
+      <section className={`shell ${styles.newsletter}`}>
+        <div><p className="eyebrow">Case studies</p><h2>See the architecture behind a better workflow.</h2><p>Explore representative system designs showing the bottleneck, automation plan, connected tools, and target operational outcomes.</p></div>
+        <div className={styles.newsletterStatus}><span>System breakdowns</span><strong><Link href="/blog/case-studies">Explore case studies →</Link></strong></div>
       </section>
 
       <section className={styles.guidesSection} id="guides"><div className="shell"><div className={styles.sectionHeader}><div><p className="eyebrow">Popular guide tracks</p><h2>Learn the system behind the software.</h2></div><p>Metaphor content prioritizes business logic and decision-making—not shallow lists of AI tools.</p></div><div className={styles.guideGrid}>{guides.map(([number, title, description]) => <article key={number}><span>{number}</span><h3>{title}</h3><p>{description}</p></article>)}</div></div></section>
