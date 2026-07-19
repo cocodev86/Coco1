@@ -4,18 +4,17 @@
 **Document:** Data Processing Addendum  
 **Version:** 1.0  
 **Owner:** Metaphor Automation Consulting  
-**Status:** Final Draft for Counsel Review  
-**Classification:** Confidential  
+**Agreement status:** Final Draft for Counsel Review  
+**Repository publication status:** Missing authoritative PDF  
+**Repository classification:** Public reusable-template metadata  
 **Last updated:** July 19, 2026
 
-The DPA supplements the Master Services Agreement whenever Metaphor processes client personal data. It addresses controller and processor roles, documented instructions, processing scope, confidentiality, information security, AI processing, subprocessors, international transfers, data-subject rights, security incidents, compliance assistance, audits, retention, return or destruction, liability, and termination.
+The DPA is intended for engagements in which Metaphor processes personal data for a client.
 
-Its appendices document technical and organizational security measures, representative authorized subprocessors, and engagement-specific processing details.
+The source document states that qualified legal counsel should review it before execution.
 
-The source document expressly states that it is a consolidated commercial contract draft requiring qualified counsel review before execution.
+## Distribution status
 
-## Distribution asset
-
-Binary publication remains pending in this branch because the GitHub connector could not ingest the larger uploaded PDF directly. Do not reconstruct or alter its substantive legal language merely for publication.
+No validated repository PDF is currently available. Publish only the authoritative supplied source after provenance, structural, rendering, completeness, page-count, checksum, and privacy validation. Do not reconstruct the agreement from summaries.
 
 **Expected asset name:** `metaphor-data-processing-addendum-v1.0.pdf`
