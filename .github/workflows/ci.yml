@@ -43,5 +43,8 @@ jobs:
       - name: Validate public assets
         run: npm run validate:assets
 
+      - name: Validate brand system
+        run: npm run validate:brand
+
       - name: Build
         run: npm run build
