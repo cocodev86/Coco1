@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import BrandLink from "@/components/branding/BrandLink";
 import { automations } from "../data";
 import styles from "../playbook.module.css";
 
@@ -37,7 +38,7 @@ export default async function AutomationPlaybookPage({ params }: { params: Promi
     <main className={styles.page}>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
       <nav className={`shell ${styles.nav}`} aria-label="Playbook navigation">
-        <Link className="brand" href="/"><span>M</span>Metaphor</Link>
+        <BrandLink className="brand" href="/" variant="compactDark" logoWidth={176} priority />
         <div className={styles.navLinks}><Link href="/automation-library">Library</Link><Link href="/blog">Insights</Link><Link href="/blog/case-studies">Case studies</Link></div>
         <Link className="button button-small" href="/#booking">Build this system</Link>
       </nav>
@@ -68,7 +69,7 @@ export default async function AutomationPlaybookPage({ params }: { params: Promi
         </aside>
       </div>
 
-      <footer className={`shell ${styles.footer}`}><Link className="brand" href="/"><span>M</span>Metaphor</Link><p>Practical automation systems for growing businesses.</p><small>© 2026 Metaphor Consulting.</small></footer>
+      <footer className={`shell ${styles.footer}`}><BrandLink className="brand" href="/" variant="compactDark" logoWidth={176} /><p>Practical automation systems for growing businesses.</p><small>© 2026 Metaphor Consulting.</small></footer>
     </main>
   );
 }
