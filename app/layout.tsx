@@ -5,6 +5,7 @@ import { BrandProvider } from "@/components/branding/BrandProvider";
 import { brand } from "@/lib/branding";
 import "./globals.css";
 import "./booking.css";
+import "@/components/branding/branding.css";
 
 const bodyFont = DM_Sans({ subsets: ["latin"], variable: "--font-body" });
 const headingFont = Manrope({ subsets: ["latin"], variable: "--font-heading" });
