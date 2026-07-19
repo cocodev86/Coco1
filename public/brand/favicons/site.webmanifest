@@ -1,0 +1,19 @@
+{
+  "name": "Metaphor Automation Consulting",
+  "short_name": "Metaphor",
+  "description": "Intelligent systems and business automation for growing companies.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#F7F6F2",
+  "theme_color": "#0D0D14",
+  "icons": [
+    {
+      "src": "/brand/favicons/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
