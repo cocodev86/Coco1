@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import MobileMenu from "../MobileMenu";
 import { articles, categories } from "./data";
 import styles from "./blog.module.css";
 
@@ -14,15 +15,24 @@ const guides = [
   ["03", "Tool selection", "Compare CRMs, databases, schedulers, payment tools, and AI platforms by business outcome."],
 ];
 
+const publicMenu = [
+  { label: "Services", href: "/#services" },
+  { label: "Process", href: "/#process" },
+  { label: "Pricing", href: "/#pricing" },
+  { label: "Blog", href: "/blog" },
+  { label: "Booking", href: "/#booking" },
+];
+
 export default function BlogHome() {
   return (
     <main className={styles.page}>
-      <nav className={`shell ${styles.nav}`} aria-label="Blog navigation">
+      <nav className={`nav shell ${styles.nav}`} aria-label="Primary navigation">
         <Link className="brand" href="/" aria-label="Metaphor Consulting home"><span>M</span>Metaphor</Link>
-        <div className={styles.navLinks}>
-          <Link href="/">Home</Link><a href="#latest">Articles</a><Link href="/automation-explorer">Explorer</Link><Link href="/automation-library">Automation library</Link><Link href="/resources">Resources</Link><Link href="/newsletter">Newsletter</Link><Link href="/blog/case-studies">Case studies</Link><Link href="/blog/search">Search</Link>
+        <div className="navlinks">
+          {publicMenu.map((item) => <Link key={item.href} href={item.href}>{item.label}</Link>)}
         </div>
-        <Link className="button button-small" href="/automation-explorer">Find my automation</Link>
+        <Link className="button button-small" href="/#booking">Book a strategy call</Link>
+        <MobileMenu links={publicMenu} ctaHref="/#booking" menuId="blog-mobile-navigation" />
       </nav>
 
       <section className={`shell ${styles.hero}`}>
