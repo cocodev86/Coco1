@@ -8,7 +8,7 @@ Version-controlled company manual for Metaphor Automation Consulting.
 |---|---|---|
 | MOS | Constitution, architecture, engineering, product and AI standards | [`mos/`](./mos/) |
 | MPB | Company, knowledge, agent and delivery playbooks | [`playbook/`](./playbook/) |
-| MCO | Client experience and client-success operations | [`client-operations/`](./client-operations/) |
+| MCO | Client experience, client-success operations, and controlled contracts | [`client-operations/`](./client-operations/) |
 | MCP | Command Center, enterprise platform, developer platform and Metaphor OS | [`platform/`](./platform/) |
 | MST | Executive strategy and five-year roadmap | [`strategy/`](./strategy/) |
 | Templates | Reusable PRD, TDD and ADR starter documents | [`templates/`](./templates/) |
@@ -50,6 +50,7 @@ Every controlled document includes an identifier, version, owner and status. Mat
 
 ### Client Operations
 - MCO-0001 — Client Experience Standard
+- [Metaphor Contract Suite](./client-operations/legal/contracts/) — MSA, SOW, Change Order, Mutual NDA, and DPA
 
 ### Platform
 - MCP-0001 — Metaphor Command Center
