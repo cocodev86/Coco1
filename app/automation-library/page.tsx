@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import BrandLink from "@/components/branding/BrandLink";
 import LibraryClient from "./LibraryClient";
 import { automations, automationCategories, automationIndustries, automationIntegrations } from "./data";
 import styles from "./library.module.css";
@@ -14,7 +15,7 @@ export default function AutomationLibraryPage() {
   return (
     <main className={styles.page}>
       <nav className={`shell ${styles.nav}`} aria-label="Automation library navigation">
-        <Link className="brand" href="/"><span>M</span>Metaphor</Link>
+        <BrandLink className="brand" href="/" variant="compactDark" logoWidth={176} priority />
         <div className={styles.navLinks}><Link href="/">Home</Link><Link href="/blog">Insights</Link><Link href="/blog/case-studies">Case studies</Link></div>
         <Link className="button button-small" href="/#booking">Build my automation</Link>
       </nav>
@@ -32,7 +33,7 @@ export default function AutomationLibraryPage() {
         <p className="eyebrow">Need a custom workflow?</p><h2>Turn a repeated task into a reliable operating system.</h2><p>Metaphor maps the process, connects the tools, adds safeguards, tests the workflow, and documents the handoff.</p><Link className="button" href="/#booking">Book an automation strategy call</Link>
       </section>
 
-      <footer className={`shell ${styles.footer}`}><Link className="brand" href="/"><span>M</span>Metaphor</Link><p>Automation playbooks for growing businesses.</p><small>© 2026 Metaphor Consulting.</small></footer>
+      <footer className={`shell ${styles.footer}`}><BrandLink className="brand" href="/" variant="compactDark" logoWidth={176} /><p>Automation playbooks for growing businesses.</p><small>© 2026 Metaphor Consulting.</small></footer>
     </main>
   );
 }
