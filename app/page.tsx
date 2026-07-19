@@ -1,3 +1,4 @@
+import Logo from "@/components/branding/Logo";
 import BookingForm from "./BookingForm";
 import MobileBookingBar from "./MobileBookingBar";
 import MobileMenu from "./MobileMenu";
@@ -26,7 +27,7 @@ export default function Home() {
   return (
     <main className={orderStyles.page}>
       <nav className={`nav shell ${orderStyles.navigation}`} aria-label="Primary navigation">
-        <a className="brand" href="#top" aria-label="Metaphor Consulting home"><span>M</span>Metaphor</a>
+        <a className="brand brand-logo-link" href="#top" aria-label="Metaphor Automation Consulting home"><Logo variant="horizontal" width={230} height={48} priority /></a>
         <div className="navlinks"><a href="#services">Services</a><a href="#process">Process</a><a href="#pricing">Pricing</a><a href="/blog">Blog</a><a href="#booking">Booking</a></div>
         <a className="button button-small" href="#booking">Book a strategy call</a>
         <MobileMenu />
@@ -62,7 +63,7 @@ export default function Home() {
 
       <section className={`booking-section ${orderStyles.booking}`} id="booking"><div className="shell"><div className="booking-layout"><div className="booking-copy"><p className="eyebrow">Book a free strategy call</p><h2>Let’s map the system your business needs next.</h2><p>Choose a preferred date and time window, tell us what you want to improve, and we’ll review your request before confirming the appointment.</p><div className="booking-points"><span>✓ No public email required</span><span>✓ Secure Supabase submission</span><span>✓ Mobile-friendly scheduling</span></div></div><BookingForm /></div><div className={orderStyles.backToTopWrap}><a className={orderStyles.backToTop} href="#top" aria-label="Back to the top of the page"><span aria-hidden="true">↑</span>Back to top</a></div></div></section>
 
-      <footer className={`shell ${orderStyles.footer}`}><a className="brand" href="#top"><span>M</span>Metaphor</a><p>AI automation and digital systems for growing businesses.</p><small>© 2026 Metaphor Consulting. All rights reserved.</small></footer>
+      <footer className={`shell ${orderStyles.footer}`}><a className="brand brand-logo-link" href="#top" aria-label="Metaphor Automation Consulting home"><Logo variant="horizontal" width={220} height={46} /></a><p>AI automation and digital systems for growing businesses.</p><small>© 2026 Metaphor Automation Consulting. All rights reserved.</small></footer>
       <MobileBookingBar />
     </main>
   );
