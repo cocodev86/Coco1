@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import BrandLink from "@/components/branding/BrandLink";
 import { caseStudies, getCaseStudy } from "../data";
 import styles from "../case-studies.module.css";
 
@@ -31,7 +32,7 @@ export default async function CaseStudyPage({ params }: PageProps) {
   return (
     <main className={styles.page}>
       <nav className={`shell ${styles.nav}`} aria-label="Case study navigation">
-        <Link className="brand" href="/"><span>M</span>Metaphor</Link>
+        <BrandLink className="brand" href="/" variant="compactDark" logoWidth={176} priority />
         <div className={styles.navLinks}>
           <Link href="/blog">Blog</Link>
           <Link href="/blog/case-studies">Case studies</Link>
