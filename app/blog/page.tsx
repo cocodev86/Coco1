@@ -20,9 +20,9 @@ export default function BlogHome() {
       <nav className={`shell ${styles.nav}`} aria-label="Blog navigation">
         <Link className="brand" href="/" aria-label="Metaphor Consulting home"><span>M</span>Metaphor</Link>
         <div className={styles.navLinks}>
-          <Link href="/">Home</Link><a href="#latest">Articles</a><Link href="/automation-library">Automation library</Link><Link href="/resources">Resources</Link><Link href="/newsletter">Newsletter</Link><Link href="/blog/case-studies">Case studies</Link><Link href="/blog/search">Search</Link>
+          <Link href="/">Home</Link><a href="#latest">Articles</a><Link href="/automation-explorer">Explorer</Link><Link href="/automation-library">Automation library</Link><Link href="/resources">Resources</Link><Link href="/newsletter">Newsletter</Link><Link href="/blog/case-studies">Case studies</Link><Link href="/blog/search">Search</Link>
         </div>
-        <Link className="button button-small" href="/#booking">Book a strategy call</Link>
+        <Link className="button button-small" href="/automation-explorer">Find my automation</Link>
       </nav>
 
       <section className={`shell ${styles.hero}`}>
@@ -30,12 +30,12 @@ export default function BlogHome() {
           <p className="eyebrow">Metaphor field notes</p>
           <h1>Build a smarter business, <em>one system at a time.</em></h1>
           <p>Practical automation advice, conversion strategy, and clear explanations for growing businesses that want better systems without unnecessary complexity.</p>
-          <div className={styles.heroActions}><a className="button" href="#latest">Explore the latest insights</a><Link className={styles.secondaryLink} href="/newsletter">Read the Metaphor memo →</Link></div>
+          <div className={styles.heroActions}><Link className="button" href="/automation-explorer">Generate my automation roadmap</Link><Link className={styles.secondaryLink} href="/newsletter">Read the Metaphor memo →</Link></div>
         </div>
 
-        <aside className={styles.featured} aria-label="Featured article">
-          <div className={styles.featuredVisual}><span>FEATURED GUIDE</span><div className={styles.workflow} aria-hidden="true"><i>Lead</i><b>→</b><i>Reply</i><b>→</b><i>Book</i></div></div>
-          <div className={styles.featuredBody}><p className={styles.meta}>AI Automation · 10 min read</p><h2>The Small Business Automation Blueprint</h2><p>Start with the customer journey, remove operational friction, and build a system that saves time without creating another tool to manage.</p><span className={styles.comingSoon}>First guide coming soon</span></div>
+        <aside className={styles.featured} aria-label="Featured tool">
+          <div className={styles.featuredVisual}><span>FLAGSHIP DIAGNOSTIC</span><div className={styles.workflow} aria-hidden="true"><i>Assess</i><b>→</b><i>Score</i><b>→</b><i>Prioritize</i></div></div>
+          <div className={styles.featuredBody}><p className={styles.meta}>Automation Explorer · 4 steps</p><h2>Find the clearest automation opportunity</h2><p>Estimate recoverable time, assess readiness, and receive a ranked implementation roadmap based on your workflow.</p><Link href="/automation-explorer">Start the assessment →</Link></div>
         </aside>
       </section>
 
@@ -58,6 +58,7 @@ export default function BlogHome() {
         </div>
       </section>
 
+      <section className={`shell ${styles.newsletter}`}><div><p className="eyebrow">Automation explorer</p><h2>Diagnose the bottleneck before choosing the software.</h2><p>Get a readiness score, directional value estimate, and three-system priority roadmap.</p></div><div className={styles.newsletterStatus}><span>4-step assessment</span><strong><Link href="/automation-explorer">Generate my roadmap →</Link></strong></div></section>
       <section className={`shell ${styles.newsletter}`}><div><p className="eyebrow">Automation library</p><h2>Start with a proven workflow pattern.</h2><p>Search implementation playbooks by bottleneck, industry, and software stack.</p></div><div className={styles.newsletterStatus}><span>6 launch playbooks</span><strong><Link href="/automation-library">Explore the library →</Link></strong></div></section>
       <section className={`shell ${styles.newsletter}`}><div><p className="eyebrow">Free resources</p><h2>Use the checklist before you buy the software.</h2><p>Work through calculators, worksheets, SOP templates, and audit tools.</p></div><div className={styles.newsletterStatus}><span>6 launch resources</span><strong><Link href="/resources">Open the resource center →</Link></strong></div></section>
       <section className={`shell ${styles.newsletter}`}><div><p className="eyebrow">Case studies</p><h2>See the architecture behind a better workflow.</h2><p>Explore representative system designs showing the bottleneck, automation plan, connected tools, and target outcomes.</p></div><div className={styles.newsletterStatus}><span>System breakdowns</span><strong><Link href="/blog/case-studies">Explore case studies →</Link></strong></div></section>
