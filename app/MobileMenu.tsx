@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import Link from "next/link";
 import styles from "./MobileMenu.module.css";
 
 const links = [
@@ -8,6 +9,7 @@ const links = [
   ["Process", "#process"],
   ["Pricing", "#pricing"],
   ["Blog", "/blog"],
+  ["Docs", "/docs"],
   ["Booking", "#booking"],
 ];
 
@@ -68,9 +70,9 @@ export default function MobileMenu() {
       >
         <nav aria-label="Mobile navigation">
           {links.map(([label, href]) => (
-            <a key={href} href={href} onClick={() => setOpen(false)}>
+            <Link key={href} href={href} onClick={() => setOpen(false)}>
               {label}
-            </a>
+            </Link>
           ))}
           <a className={styles.cta} href="#booking" onClick={() => setOpen(false)}>
             Book a strategy call
