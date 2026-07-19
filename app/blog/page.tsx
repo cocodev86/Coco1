@@ -20,7 +20,7 @@ export default function BlogHome() {
       <nav className={`shell ${styles.nav}`} aria-label="Blog navigation">
         <Link className="brand" href="/" aria-label="Metaphor Consulting home"><span>M</span>Metaphor</Link>
         <div className={styles.navLinks}>
-          <Link href="/">Home</Link><a href="#latest">Articles</a><Link href="/automation-library">Automation library</Link><Link href="/blog/case-studies">Case studies</Link><Link href="/blog/search">Search</Link>
+          <Link href="/">Home</Link><a href="#latest">Articles</a><Link href="/automation-library">Automation library</Link><Link href="/resources">Resources</Link><Link href="/blog/case-studies">Case studies</Link><Link href="/blog/search">Search</Link>
         </div>
         <Link className="button button-small" href="/#booking">Book a strategy call</Link>
       </nav>
@@ -30,7 +30,7 @@ export default function BlogHome() {
           <p className="eyebrow">Metaphor field notes</p>
           <h1>Build a smarter business, <em>one system at a time.</em></h1>
           <p>Practical automation advice, conversion strategy, and clear explanations for growing businesses that want better systems without unnecessary complexity.</p>
-          <div className={styles.heroActions}><a className="button" href="#latest">Explore the latest insights</a><Link className={styles.secondaryLink} href="/automation-library">Browse automation playbooks →</Link></div>
+          <div className={styles.heroActions}><a className="button" href="#latest">Explore the latest insights</a><Link className={styles.secondaryLink} href="/resources">Use free business resources →</Link></div>
         </div>
 
         <aside className={styles.featured} aria-label="Featured article">
@@ -61,6 +61,11 @@ export default function BlogHome() {
       <section className={`shell ${styles.newsletter}`}>
         <div><p className="eyebrow">Automation library</p><h2>Start with a proven workflow pattern.</h2><p>Search implementation playbooks by bottleneck, industry, and software stack. Each page includes build scope, integrations, time-saved ranges, and the workflow architecture.</p></div>
         <div className={styles.newsletterStatus}><span>6 launch playbooks</span><strong><Link href="/automation-library">Explore the library →</Link></strong></div>
+      </section>
+
+      <section className={`shell ${styles.newsletter}`}>
+        <div><p className="eyebrow">Free resources</p><h2>Use the checklist before you buy the software.</h2><p>Work through practical calculators, worksheets, SOP templates, and audit tools for automation readiness, ROI, CRM, lead funnels, and client operations.</p></div>
+        <div className={styles.newsletterStatus}><span>6 launch resources</span><strong><Link href="/resources">Open the resource center →</Link></strong></div>
       </section>
 
       <section className={`shell ${styles.newsletter}`}>
