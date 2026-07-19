@@ -4,15 +4,20 @@
 **Version:** 1.0  
 **Owner:** Metaphor Automation Consulting  
 **Agreement status:** Client-facing draft for counsel review  
-**Repository publication status:** Missing authoritative PDF  
-**Repository classification:** Public reusable-template metadata
+**Repository publication status:** Validated PDF available  
+**Repository classification:** Public reusable template
 
-The Master Services Agreement establishes baseline terms for Metaphor client engagements and related Statements of Work.
+The Master Services Agreement establishes baseline terms for Metaphor client engagements and related Statements of Work. Qualified counsel should review the document before execution.
 
-The source document states that qualified counsel should review it before use.
+## Distribution asset
 
-## Distribution status
+[Open the Master Services Agreement PDF](./metaphor-master-services-agreement-v1.0.pdf)
 
-No validated repository PDF is currently available. Add the original supplied file only after its source, completeness, rendering, page count, checksum, and privacy review are confirmed.
+## Publication record
 
-**Expected asset name:** `metaphor-master-services-agreement-v1.0.pdf`
+- Pages: 15
+- Form fields: 12
+- Size: 120954 bytes
+- SHA-256: `d045b3edbd02d59fd416504884811a7c1b5c660038b931894bb4d53209ced9b0`
+- Technical status: Structurally openable, text-extractable, unencrypted, and verified in two renderers
+- Legal status: Draft for qualified counsel review; not represented as attorney-approved
