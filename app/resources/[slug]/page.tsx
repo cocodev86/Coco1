@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import BrandLink from "@/components/branding/BrandLink";
 import { resources } from "../data";
 import PrintButton from "./PrintButton";
 import styles from "./resource.module.css";
@@ -39,7 +40,7 @@ export default async function ResourcePage({ params }: { params: Promise<{ slug:
     <main className={styles.page}>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }} />
       <nav className={`shell ${styles.nav}`} aria-label="Resource navigation">
-        <Link className="brand" href="/"><span>M</span>Metaphor</Link>
+        <BrandLink className="brand" href="/" variant="compactDark" logoWidth={176} priority />
         <div className={styles.navLinks}><Link href="/resources">Resources</Link><Link href="/automation-library">Automation library</Link><Link href="/blog">Insights</Link></div>
         <Link className="button button-small" href="/#booking">Get implementation help</Link>
       </nav>
@@ -67,7 +68,7 @@ export default async function ResourcePage({ params }: { params: Promise<{ slug:
         </aside>
       </div>
 
-      <footer className={`shell ${styles.footer}`}><Link className="brand" href="/"><span>M</span>Metaphor</Link><p>Practical resources for smarter systems.</p><small>© 2026 Metaphor Consulting.</small></footer>
+      <footer className={`shell ${styles.footer}`}><BrandLink className="brand" href="/" variant="compactDark" logoWidth={176} /><p>Practical resources for smarter systems.</p><small>© 2026 Metaphor Consulting.</small></footer>
     </main>
   );
 }
