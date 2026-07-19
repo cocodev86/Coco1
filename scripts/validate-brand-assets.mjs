@@ -113,14 +113,18 @@ async function collectSourceFiles(directory) {
   return files;
 }
 
+const placeholderFiles = [];
 for (const sourceRoot of ["app", "components"]) {
   const directory = path.join(root, sourceRoot);
   for (const file of await collectSourceFiles(directory)) {
     const source = await readFile(file, "utf8");
     if (/<span[^>]*>\s*M\s*<\/span>/i.test(source)) {
-      throw new Error(`Placeholder M logo remains in ${path.relative(root, file)}`);
+      placeholderFiles.push(path.relative(root, file));
     }
   }
+}
+if (placeholderFiles.length > 0) {
+  throw new Error(`Placeholder M logo remains in:\n- ${placeholderFiles.join("\n- ")}`);
 }
 
 for (const integrationFile of ["app/page.tsx", "app/blog/page.tsx"]) {
