@@ -3,11 +3,20 @@
 **Document:** Statement of Work  
 **Version:** 1.0  
 **Owner:** Metaphor Automation Consulting  
-**Status:** Client-facing template  
-**Classification:** Confidential
+**Agreement status:** Client-facing template  
+**Repository publication status:** Validated PDF available  
+**Repository classification:** Public reusable template
 
-The SOW defines project-specific client information, objectives, services, scope, exclusions, deliverables, client responsibilities, timeline, fees, payment schedule, third-party services, acceptance criteria, revisions, warranty, support, AI services, special terms, and signatures. It is incorporated into and governed by the applicable Master Services Agreement.
+This template records project scope, deliverables, schedule, fees, responsibilities, acceptance, support, and signatures.
 
-## Download
+## Distribution asset
 
-[Download the branded Statement of Work PDF](./metaphor-statement-of-work-v1.0.pdf)
+[Open the Statement of Work PDF](./metaphor-statement-of-work-v1.0.pdf)
+
+## Publication record
+
+- Pages: 3
+- Form fields: 0
+- Size: 4737 bytes
+- SHA-256: `c6f0028bf65705d109452d75a264c4d1a34f7a1f71fdaa1ce84ec72059312a06`
+- Technical status: Regenerated, structurally openable, text-extractable, unencrypted, and verified in two renderers
