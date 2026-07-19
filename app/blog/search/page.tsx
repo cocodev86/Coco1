@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import BrandLink from "@/components/branding/BrandLink";
 import { articles } from "../data";
 import SearchClient from "./SearchClient";
 import styles from "./search.module.css";
@@ -14,9 +15,7 @@ export default function BlogSearchPage() {
   return (
     <main className={styles.page}>
       <nav className={`shell ${styles.nav}`} aria-label="Blog navigation">
-        <Link className="brand" href="/" aria-label="Metaphor Consulting home">
-          <span>M</span>Metaphor
-        </Link>
+        <BrandLink className="brand" href="/" variant="compactDark" logoWidth={176} priority />
         <div className={styles.navLinks}>
           <Link href="/blog">Blog</Link>
           <Link href="/blog#latest">Articles</Link>
@@ -42,7 +41,7 @@ export default function BlogSearchPage() {
       </div>
 
       <footer className={`shell ${styles.footer}`}>
-        <Link className="brand" href="/"><span>M</span>Metaphor</Link>
+        <BrandLink className="brand" href="/" variant="compactDark" logoWidth={176} />
         <p>AI automation insights and digital systems for growing businesses.</p>
         <small>© 2026 Metaphor Consulting. All rights reserved.</small>
       </footer>
