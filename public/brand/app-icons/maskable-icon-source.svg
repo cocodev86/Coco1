@@ -1,0 +1,4 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title"><title id="title">Metaphor maskable application icon</title><defs>
+<linearGradient id="violetGradient" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#8A6BFF"/><stop offset="1" stop-color="#5634E8"/></linearGradient>
+<linearGradient id="limeGradient" x1="1" y1="0" x2="0" y2="1"><stop stop-color="#C8FF36"/><stop offset="1" stop-color="#8FD900"/></linearGradient>
+</defs><rect width="128" height="128" fill="#0D0D14"/><g transform="translate(22 22) scale(0.65625)"><path fill="url(#violetGradient)" d="M14 19 58 46 14 73z"/><path fill="#6C4CFF" d="M14 55 58 82 14 109z" opacity=".92"/><path fill="url(#limeGradient)" d="M114 19 70 46l44 27z"/><path fill="#B7FF2A" d="M114 55 70 82l44 27z" opacity=".92"/><path fill="#F7F6F2" d="M58 46h12l18 18-18 18H58L40 64z"/></g></svg>
