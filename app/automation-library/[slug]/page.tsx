@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { createPageMetadata } from "@/lib/metadata";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import BrandLink from "@/components/branding/BrandLink";
@@ -13,12 +14,13 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params;
   const playbook = automations.find((item) => item.slug === slug);
   if (!playbook) return {};
-  return {
-    title: `${playbook.title} Automation | Metaphor Consulting`,
+
+  return createPageMetadata({
+    title: `${playbook.title} Automation`,
     description: playbook.summary,
-    alternates: { canonical: `/automation-library/${playbook.slug}` },
-    openGraph: { title: playbook.title, description: playbook.summary, type: "article" },
-  };
+    path: `/automation-library/${playbook.slug}`,
+    type: "article",
+  });
 }
 
 export default async function AutomationPlaybookPage({ params }: { params: Promise<{ slug: string }> }) {

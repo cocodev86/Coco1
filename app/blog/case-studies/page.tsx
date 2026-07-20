@@ -1,14 +1,15 @@
 import type { Metadata } from "next";
+import { createPageMetadata } from "@/lib/metadata";
 import Link from "next/link";
 import BrandLink from "@/components/branding/BrandLink";
 import { caseStudies } from "./data";
 import styles from "./case-studies.module.css";
 
-export const metadata: Metadata = {
-  title: "Automation Case Studies | Metaphor Consulting",
-  description:
-    "Explore practical automation system designs for service businesses and independent consultants.",
-};
+export const metadata: Metadata = createPageMetadata({
+  title: "Automation Case Studies",
+  description: "Explore practical automation system designs for service businesses and independent consultants.",
+  path: "/blog/case-studies",
+});
 
 export default function CaseStudiesPage() {
   return (

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { createPageMetadata } from "@/lib/metadata";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import BrandLink from "@/components/branding/BrandLink";
@@ -15,10 +16,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const category = categories.find((item) => item.slug === slug);
   if (!category) return {};
-  return {
-    title: `${category.name} Articles | Metaphor Consulting`,
+
+  return createPageMetadata({
+    title: `${category.name} Articles`,
     description: `Practical ${category.name.toLowerCase()} guides and strategies for growing businesses.`,
-  };
+    path: `/blog/category/${slug}`,
+  });
 }
 
 export default async function CategoryPage({ params }: Props) {

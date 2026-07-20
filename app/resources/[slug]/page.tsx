@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { createPageMetadata } from "@/lib/metadata";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import BrandLink from "@/components/branding/BrandLink";
@@ -14,12 +15,13 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params;
   const resource = resources.find((item) => item.slug === slug);
   if (!resource) return {};
-  return {
-    title: `${resource.title} | Metaphor Consulting`,
+
+  return createPageMetadata({
+    title: resource.title,
     description: resource.description,
-    alternates: { canonical: `/resources/${resource.slug}` },
-    openGraph: { title: resource.title, description: resource.description, type: "article" },
-  };
+    path: `/resources/${resource.slug}`,
+    type: "article",
+  });
 }
 
 export default async function ResourcePage({ params }: { params: Promise<{ slug: string }> }) {

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { createPageMetadata } from "@/lib/metadata";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import BrandLink from "@/components/branding/BrandLink";
@@ -15,29 +16,17 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const article = articles.find((item) => item.slug === slug);
   if (!article) return {};
 
-  return {
-    title: `${article.title} | Metaphor Consulting`,
+  return createPageMetadata({
+    title: article.title,
     description: article.excerpt,
+    path: `/blog/${article.slug}`,
+    type: "article",
     keywords: article.tags,
-    authors: [{ name: article.author }],
-    alternates: { canonical: `/blog/${article.slug}` },
-    openGraph: {
-      type: "article",
-      title: article.title,
-      description: article.excerpt,
-      publishedTime: article.date,
-      modifiedTime: article.updated ?? article.date,
-      authors: [article.author],
-      tags: article.tags,
-      url: `/blog/${article.slug}`,
-      siteName: "Metaphor Consulting",
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: article.title,
-      description: article.excerpt,
-    },
-  };
+    authors: [article.author],
+    publishedTime: article.date,
+    modifiedTime: article.updated ?? article.date,
+    tags: article.tags,
+  });
 }
 
 export default async function ArticlePage({ params }: { params: Promise<{ slug: string }> }) {

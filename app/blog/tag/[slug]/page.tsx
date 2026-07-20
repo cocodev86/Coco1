@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { createPageMetadata } from "@/lib/metadata";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import BrandLink from "@/components/branding/BrandLink";
@@ -15,10 +16,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   if (!tags.includes(slug)) return {};
   const title = titleFromSlug(slug);
-  return {
-    title: `${title} Articles | Metaphor Consulting`,
+
+  return createPageMetadata({
+    title: `${title} Articles`,
     description: `Articles and practical guidance tagged ${title}.`,
-  };
+    path: `/blog/tag/${slug}`,
+  });
 }
 
 export default async function TagPage({ params }: Props) {

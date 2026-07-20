@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { createPageMetadata } from "@/lib/metadata";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import BrandLink from "@/components/branding/BrandLink";
@@ -13,12 +14,14 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params;
   const issue = newsletterIssues.find((item) => item.slug === slug);
   if (!issue) return {};
-  return {
-    title: `${issue.title} | The Metaphor Memo`,
+
+  return createPageMetadata({
+    title: issue.title,
     description: issue.summary,
-    alternates: { canonical: `/newsletter/${issue.slug}` },
-    openGraph: { title: issue.title, description: issue.summary, type: "article" },
-  };
+    path: `/newsletter/${issue.slug}`,
+    type: "article",
+    authors: ["Coco"],
+  });
 }
 
 export default async function NewsletterIssuePage({ params }: { params: Promise<{ slug: string }> }) {

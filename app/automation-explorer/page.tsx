@@ -1,19 +1,15 @@
 import type { Metadata } from "next";
+import { createPageMetadata } from "@/lib/metadata";
 import Link from "next/link";
 import BrandLink from "@/components/branding/BrandLink";
 import ExplorerClient from "./ExplorerClient";
 import styles from "./explorer.module.css";
 
-export const metadata: Metadata = {
-  title: "AI Automation Explorer | Metaphor Consulting",
+export const metadata: Metadata = createPageMetadata({
+  title: "AI Automation Explorer",
   description: "Assess your workflow, estimate recoverable time, and receive a prioritized automation roadmap based on your business profile.",
-  alternates: { canonical: "/automation-explorer" },
-  openGraph: {
-    title: "AI Automation Explorer | Metaphor Consulting",
-    description: "Get a directional automation-readiness score and prioritized implementation roadmap.",
-    type: "website",
-  },
-};
+  path: "/automation-explorer",
+});
 
 export default function AutomationExplorerPage() {
   return (

@@ -1,15 +1,16 @@
 import type { Metadata } from "next";
+import { createPageMetadata } from "@/lib/metadata";
 import Link from "next/link";
 import BrandLink from "@/components/branding/BrandLink";
 import { articles } from "../data";
 import SearchClient from "./SearchClient";
 import styles from "./search.module.css";
 
-export const metadata: Metadata = {
-  title: "Search Insights | Metaphor Consulting",
-  description:
-    "Search Metaphor Consulting articles by automation topic, business challenge, category, or tag.",
-};
+export const metadata: Metadata = createPageMetadata({
+  title: "Search Insights",
+  description: "Search Metaphor Consulting articles by automation topic, business challenge, category, or tag.",
+  path: "/blog/search",
+});
 
 export default function BlogSearchPage() {
   return (

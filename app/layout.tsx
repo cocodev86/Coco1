@@ -7,11 +7,14 @@ import "./booking.css";
 
 const bodyFont = DM_Sans({ subsets: ["latin"], variable: "--font-body" });
 const headingFont = Manrope({ subsets: ["latin"], variable: "--font-heading" });
+const defaultTitle = "Metaphor Consulting | AI Automation & Digital Systems";
 
 export const metadata: Metadata = {
-  title: "Metaphor Consulting | AI Automation & Digital Systems",
-  description:
-    "AI-powered websites, lead capture, booking automation, and business systems designed to save time and increase profit.",
+  metadataBase: new URL(brand.url),
+  title: { default: defaultTitle, template: "%s | Metaphor Consulting" },
+  applicationName: brand.displayName,
+  description: brand.description,
+  alternates: { canonical: "/" },
   manifest: brand.icons.manifest,
   icons: {
     icon: [
@@ -21,12 +24,33 @@ export const metadata: Metadata = {
       { url: "/brand/favicons/favicon-16x16.png", sizes: "16x16", type: "image/png" },
     ],
     apple: [{ url: brand.icons.appleTouch, sizes: "180x180", type: "image/png" }],
-    other: [
-      {
-        rel: "mask-icon",
-        url: brand.icons.safariPinnedTab,
-      },
-    ],
+    other: [{ rel: "mask-icon", url: brand.icons.safariPinnedTab }],
+  },
+  openGraph: {
+    type: "website",
+    title: defaultTitle,
+    description: brand.description,
+    url: "/",
+    siteName: brand.shortName,
+    locale: "en_US",
+    images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: `${brand.shortName} — ${brand.tagline}` }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: defaultTitle,
+    description: brand.description,
+    images: ["/twitter-image"],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
   },
   other: {
     "msapplication-TileColor": brand.colors.ink,
