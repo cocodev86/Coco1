@@ -7,7 +7,7 @@ on:
       - main
 
 permissions:
-  contents: write
+  contents: read
 
 concurrency:
   group: ci-${{ github.workflow }}-${{ github.ref }}
@@ -21,48 +21,6 @@ jobs:
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
-        with:
-          ref: ${{ github.event.pull_request.head.sha || github.sha }}
-          fetch-depth: 0
-          show-progress: false
-
-      - name: Capture Phase 4 metadata repair
-        id: metadata-codemod
-        if: github.event_name == 'pull_request' && github.head_ref == 'feat/metadata-social-preview-normalization' && github.event.pull_request.head.repo.full_name == github.repository
-        shell: bash
-        run: |
-          set +e
-          node scripts/repair-phase4-dynamic-metadata.mjs > phase4-codemod.log 2>&1
-          status=$?
-          cat phase4-codemod.log
-          echo "status=$status" >> "$GITHUB_OUTPUT"
-          exit 0
-
-      - name: Upload Phase 4 codemod diagnostics
-        if: github.event_name == 'pull_request' && github.head_ref == 'feat/metadata-social-preview-normalization' && always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: phase4-codemod-log
-          path: phase4-codemod.log
-          retention-days: 1
-
-      - name: Enforce Phase 4 metadata repair
-        if: github.event_name == 'pull_request' && github.head_ref == 'feat/metadata-social-preview-normalization' && steps.metadata-codemod.outputs.status != '0'
-        run: exit 1
-
-      - name: Commit Phase 4 metadata repair
-        if: github.event_name == 'pull_request' && github.head_ref == 'feat/metadata-social-preview-normalization' && github.event.pull_request.head.repo.full_name == github.repository
-        shell: bash
-        run: |
-          if git diff --quiet; then
-            echo "No dynamic metadata repairs were required."
-          else
-            git config user.name "github-actions[bot]"
-            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-            git add app scripts
-            git commit -m "fix(metadata): repair dynamic route metadata functions"
-            git push origin HEAD:feat/metadata-social-preview-normalization
-          fi
 
       - name: Validate brand system
         run: node scripts/validate-brand-assets.mjs
