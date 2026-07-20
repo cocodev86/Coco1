@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 import { absoluteUrl } from "@/lib/metadata";
+import { DOC_CATEGORIES, getAllDocs } from "@/lib/docs";
 import { articles, categories, tags } from "@/app/blog/data";
 import { caseStudies } from "@/app/blog/case-studies/data";
 import { automations } from "@/app/automation-library/data";
@@ -15,6 +16,7 @@ const staticRoutes = [
   "/automation-explorer",
   "/resources",
   "/newsletter",
+  "/docs",
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -27,12 +29,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...automations.map((item) => `/automation-library/${item.slug}`),
     ...resources.map((item) => `/resources/${item.slug}`),
     ...newsletterIssues.map((item) => `/newsletter/${item.slug}`),
+    ...DOC_CATEGORIES.map((category) => `/docs/${category.slug}`),
+    ...getAllDocs().map((doc) => doc.href),
   ];
 
-  return [...staticRoutes, ...dynamicRoutes].map((path) => ({
+  return [...new Set([...staticRoutes, ...dynamicRoutes])].map((path) => ({
     url: absoluteUrl(path),
     lastModified: now,
     changeFrequency: path === "/" ? "weekly" : "monthly",
-    priority: path === "/" ? 1 : path.split("/").length <= 3 ? 0.8 : 0.6,
+    priority: path === "/" ? 1 : path === "/docs" ? 0.9 : path.split("/").length <= 3 ? 0.8 : 0.6,
   }));
 }
