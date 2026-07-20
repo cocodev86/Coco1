@@ -11,7 +11,7 @@ function requireMatch(source, pattern, message) {
 
 const layout = await read("app/layout.tsx");
 requireMatch(layout, /metadataBase:\s*new URL\(brand\.url\)/, "Root metadata must define metadataBase from brand.url.");
-requireMatch(layout, /title:\s*\{[\s\S]*default:[\s\S]*template:/, "Root metadata must define a title default and template.");
+requireMatch(layout, /template:\s*"%s \| Metaphor Consulting"/, "Root metadata must apply the exact global Metaphor title template.");
 requireMatch(layout, /alternates:\s*\{\s*canonical:/, "Root metadata must define a canonical URL.");
 requireMatch(layout, /openGraph:\s*\{/, "Root metadata must define Open Graph metadata.");
 requireMatch(layout, /twitter:\s*\{/, "Root metadata must define Twitter metadata.");
@@ -22,9 +22,14 @@ requireMatch(layout, /\/twitter-image/, "Root Twitter metadata must use the PNG 
 const helper = await read("lib/metadata.ts");
 requireMatch(helper, /alternates:\s*\{\s*canonical\s*\}/, "Metadata helper must emit a canonical URL.");
 requireMatch(helper, /url:\s*canonical/, "Metadata helper must emit route-correct Open Graph URLs.");
+requireMatch(helper, /defaultOpenGraphImage\s*=\s*"\/opengraph-image"/, "Metadata helper must use the dedicated Open Graph image route.");
+requireMatch(helper, /defaultTwitterImage\s*=\s*"\/twitter-image"/, "Metadata helper must use the dedicated Twitter image route.");
+requireMatch(helper, /images:\s*\[twitterImageUrl\]/, "Metadata helper must keep Twitter images separate from Open Graph images.");
 requireMatch(helper, /summary_large_image/, "Metadata helper must emit large Twitter cards.");
 requireMatch(helper, /width:\s*1200/, "Metadata helper must describe 1200-pixel social images.");
 requireMatch(helper, /height:\s*630/, "Metadata helper must describe 630-pixel social images.");
+requireMatch(helper, /normalizeDate\(publishedTime\)/, "Article publication dates must be normalized for social metadata.");
+requireMatch(helper, /normalizeDate\(modifiedTime\)/, "Article modification dates must be normalized for social metadata.");
 
 const openGraphImage = await read("app/opengraph-image.tsx");
 requireMatch(openGraphImage, /width:\s*1200/, "Open Graph image width must be 1200 pixels.");
