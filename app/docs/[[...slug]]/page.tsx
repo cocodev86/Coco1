@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { createPageMetadata } from "@/lib/metadata";
-import { DOC_CATEGORIES, getAdjacentDocs, getAllDocs, getCategoryDocs, getDocBySlug } from "@/lib/docs";
+import { DOC_CATEGORIES, getAdjacentDocs, getAllDocs, getCategoryDocs, getCategoryManual, getDocBySlug } from "@/lib/docs";
 import MarkdownDocument from "../MarkdownDocument";
 import styles from "../docs.module.css";
 
@@ -35,7 +35,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 }
 
 function DocsHome() {
-  const docs = getAllDocs();
+  const docs = getAllDocs().filter((doc) => !doc.isFullManual);
   return (
     <div className={styles.home}>
       <header className={styles.homeHero}>
@@ -63,9 +63,19 @@ function CategoryPage({ slug }: { slug: string }) {
   const category = DOC_CATEGORIES.find((item) => item.slug === slug);
   if (!category) notFound();
   const docs = getCategoryDocs(category.slug);
+  const manual = getCategoryManual(category.slug);
   return (
     <div className={styles.categoryPage}>
-      <header className={styles.categoryHero}><p className={styles.kicker}>{category.code}</p><h1>{category.title}</h1><p>{category.description}</p><div><span>{docs.length} current documents</span><Link href="/docs">All documentation</Link></div></header>
+      <header className={styles.categoryHero}>
+        <p className={styles.kicker}>{category.code}</p>
+        <h1>{category.title}</h1>
+        <p>{category.description}</p>
+        <div>
+          <span>{docs.length} current documents</span>
+          {manual && <Link href={manual.href}>Read the complete manual</Link>}
+          <Link href="/docs">All documentation</Link>
+        </div>
+      </header>
       <section className={styles.documentList}><h2>Documents</h2>{docs.map((doc, index) => (
         <Link href={doc.href} key={doc.href}><span>{String(index + 1).padStart(2, "0")}</span><div>{doc.metadata.documentId && <small>{doc.metadata.documentId}</small>}<strong>{doc.title}</strong><p>{doc.description}</p></div><b aria-hidden="true">→</b></Link>
       ))}</section>
