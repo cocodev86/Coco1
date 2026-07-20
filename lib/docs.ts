@@ -35,6 +35,9 @@ export type DocEntry = {
   bodyText: string;
   metadata: DocMetadata;
   toc: TocItem[];
+  order: number;
+  isFullManual: boolean;
+  isVirtual: boolean;
 };
 
 export type SearchRecord = {
@@ -49,6 +52,8 @@ export type SearchRecord = {
 
 const docsRoot = path.join(process.cwd(), "docs");
 const repositoryUrl = "https://github.com/cocodev86/Coco1";
+const headingPattern = /^(#{1,6})\s+(.+)$/gm;
+const numberedHeadingPattern = /^##\s+((?:MOS|MPB|MCP)-\d{4})\s+[—-]\s+(.+)$/gm;
 let cache: DocEntry[] | undefined;
 
 function cleanInlineMarkdown(value: string) {
@@ -83,7 +88,7 @@ function titleFromMarkdown(markdown: string, fallback: string) {
   return cleanInlineMarkdown(markdown.match(/^#\s+(.+)$/m)?.[1] || fallback);
 }
 
-function bodyText(markdown: string) {
+function toBodyText(markdown: string) {
   return markdown
     .replace(/```[\s\S]*?```/g, " ")
     .replace(/<[^>]+>/g, " ")
@@ -95,13 +100,27 @@ function bodyText(markdown: string) {
 
 function extractToc(markdown: string): TocItem[] {
   const seen = new Map<string, number>();
-  return Array.from(markdown.matchAll(/^(#{2,4})\s+(.+)$/gm)).map((match) => {
-    const title = cleanInlineMarkdown(match[2]);
-    const base = slugifyDoc(title);
-    const duplicate = seen.get(base) || 0;
-    seen.set(base, duplicate + 1);
-    return { depth: match[1].length, id: duplicate ? `${base}-${duplicate}` : base, title };
-  });
+  return Array.from(markdown.matchAll(headingPattern))
+    .filter((match) => match[1].length >= 2 && match[1].length <= 4)
+    .map((match) => {
+      const title = cleanInlineMarkdown(match[2]);
+      const base = slugifyDoc(title);
+      const duplicate = seen.get(base) || 0;
+      seen.set(base, duplicate + 1);
+      return { depth: match[1].length, id: duplicate ? `${base}-${duplicate}` : base, title };
+    });
+}
+
+function extractMetadata(markdown: string, title: string, documentId?: string): DocMetadata {
+  const headingId = title.match(/^([A-Z]{2,5}-\d{3,5})\b/)?.[1];
+  return {
+    documentId: documentId || metadataValue(markdown, "Document ID") || headingId,
+    version: metadataValue(markdown, "Version"),
+    classification: metadataValue(markdown, "Classification"),
+    status: metadataValue(markdown, "Status"),
+    owner: metadataValue(markdown, "Owner"),
+    date: metadataValue(markdown, "Last updated") || metadataValue(markdown, "Date"),
+  };
 }
 
 function categoryFor(relativeToDocs: string) {
@@ -114,54 +133,112 @@ export function routeSegmentsForSource(sourcePath: string) {
   const parts = normalized.split("/").filter(Boolean);
   const fileName = parts.pop() || "documentation.md";
   const stem = fileName.replace(/\.md$/i, "");
-  if (/^readme$/i.test(stem)) return [...parts.map(slugifyDoc), "overview"];
+  if (/^(readme|index)$/i.test(stem)) return parts.map(slugifyDoc);
   return [...parts.map(slugifyDoc), slugifyDoc(stem)];
 }
 
-function createEntry(fullPath: string): DocEntry | null {
-  const sourcePath = path.relative(process.cwd(), fullPath).replaceAll(path.sep, "/");
-  if (sourcePath === "docs/README.md") return null;
+function manualSections(markdown: string) {
+  const matches = Array.from(markdown.matchAll(numberedHeadingPattern));
+  return matches.map((match, index) => {
+    const start = match.index || 0;
+    const end = matches[index + 1]?.index || markdown.length;
+    const section = markdown.slice(start, end).trim().replace(/^## /, "# ");
+    return {
+      id: match[1],
+      title: `${match[1]} — ${match[2].trim()}`,
+      markdown: `${section}\n`,
+    };
+  });
+}
 
-  const relativeToDocs = sourcePath.replace(/^docs\//, "");
-  const markdown = readFileSync(fullPath, "utf8");
-  const slug = routeSegmentsForSource(sourcePath);
-  const fallback = path.basename(fullPath, ".md").replaceAll("-", " ");
-  const title = titleFromMarkdown(markdown, fallback);
-  const plainText = bodyText(markdown);
-  const headingId = title.match(/^([A-Z]{2,5}-\d{3,5})\b/)?.[1];
-
+function makeEntry(args: {
+  slug: string[];
+  markdown: string;
+  sourcePath: string;
+  category: DocCategory | null;
+  order: number;
+  title?: string;
+  metadataSource?: string;
+  documentId?: string;
+  isFullManual?: boolean;
+  isVirtual?: boolean;
+}): DocEntry {
+  const title = args.title || titleFromMarkdown(args.markdown, args.slug.at(-1) || "Documentation");
+  const plainText = toBodyText(args.markdown);
   return {
-    slug,
-    href: `/docs/${slug.join("/")}`,
+    slug: args.slug,
+    href: `/docs/${args.slug.join("/")}`,
     title,
     description: plainText.slice(0, 180),
-    category: categoryFor(relativeToDocs),
-    sourcePath,
-    sourceHref: `${repositoryUrl}/blob/main/${sourcePath}`,
-    markdown,
+    category: args.category,
+    sourcePath: args.sourcePath,
+    sourceHref: `${repositoryUrl}/blob/main/${args.sourcePath}`,
+    markdown: args.markdown,
     bodyText: plainText,
-    metadata: {
-      documentId: metadataValue(markdown, "Document ID") || headingId,
-      version: metadataValue(markdown, "Version"),
-      classification: metadataValue(markdown, "Classification"),
-      status: metadataValue(markdown, "Status"),
-      owner: metadataValue(markdown, "Owner"),
-      date: metadataValue(markdown, "Last updated") || metadataValue(markdown, "Date"),
-    },
-    toc: extractToc(markdown),
+    metadata: extractMetadata(args.metadataSource || args.markdown, title, args.documentId),
+    toc: extractToc(args.markdown),
+    order: args.order,
+    isFullManual: args.isFullManual || false,
+    isVirtual: args.isVirtual || false,
   };
 }
 
-export function getAllDocs() {
+export function getAllDocs(): DocEntry[] {
   if (cache) return cache;
-  cache = walkMarkdown(docsRoot)
-    .map(createEntry)
-    .filter((doc): doc is DocEntry => Boolean(doc))
-    .sort((a, b) => {
-      const aCategory = a.category ? DOC_CATEGORIES.findIndex((item) => item.slug === a.category?.slug) : 99;
-      const bCategory = b.category ? DOC_CATEGORIES.findIndex((item) => item.slug === b.category?.slug) : 99;
-      return aCategory - bCategory || a.title.localeCompare(b.title);
-    });
+  if (!existsSync(docsRoot)) return [];
+
+  const entries: DocEntry[] = [];
+  for (const fullPath of walkMarkdown(docsRoot)) {
+    const sourcePath = path.relative(process.cwd(), fullPath).replaceAll(path.sep, "/");
+    if (sourcePath === "docs/README.md") continue;
+
+    const relativeToDocs = sourcePath.replace(/^docs\//, "");
+    const category = categoryFor(relativeToDocs);
+    const raw = readFileSync(fullPath, "utf8");
+    const baseSlug = routeSegmentsForSource(sourcePath);
+    const sections = manualSections(raw);
+
+    if (sections.length > 1 && category) {
+      entries.push(makeEntry({
+        slug: baseSlug,
+        markdown: raw,
+        sourcePath,
+        category,
+        order: 0,
+        isFullManual: true,
+      }));
+      sections.forEach((section, index) => {
+        entries.push(makeEntry({
+          slug: [category.slug, slugifyDoc(section.title)],
+          markdown: section.markdown,
+          sourcePath,
+          category,
+          order: index + 1,
+          title: section.title,
+          metadataSource: raw,
+          documentId: section.id,
+          isVirtual: true,
+        }));
+      });
+    } else {
+      entries.push(makeEntry({ slug: baseSlug, markdown: raw, sourcePath, category, order: 100 }));
+    }
+  }
+
+  const routeOwners = new Map<string, string>();
+  for (const entry of entries) {
+    const existing = routeOwners.get(entry.href);
+    if (existing && existing !== entry.sourcePath) {
+      throw new Error(`Documentation route collision at ${entry.href}: ${existing} and ${entry.sourcePath}`);
+    }
+    routeOwners.set(entry.href, entry.sourcePath);
+  }
+
+  cache = entries.sort((a, b) => {
+    const aCategory = a.category ? DOC_CATEGORIES.findIndex((item) => item.slug === a.category?.slug) : 99;
+    const bCategory = b.category ? DOC_CATEGORIES.findIndex((item) => item.slug === b.category?.slug) : 99;
+    return aCategory - bCategory || a.order - b.order || a.title.localeCompare(b.title);
+  });
   return cache;
 }
 
@@ -169,12 +246,16 @@ export function getDocBySlug(slug: string[]) {
   return getAllDocs().find((doc) => doc.slug.join("/") === slug.join("/"));
 }
 
-export function getCategoryDocs(categorySlug: string) {
-  return getAllDocs().filter((doc) => doc.category?.slug === categorySlug);
+export function getCategoryDocs(categorySlug: string, includeManual = false) {
+  return getAllDocs().filter((doc) => doc.category?.slug === categorySlug && (includeManual || !doc.isFullManual));
+}
+
+export function getCategoryManual(categorySlug: string) {
+  return getAllDocs().find((doc) => doc.category?.slug === categorySlug && doc.isFullManual);
 }
 
 export function getAdjacentDocs(doc: DocEntry) {
-  const ordered = getAllDocs();
+  const ordered = getAllDocs().filter((entry) => !entry.isFullManual);
   const index = ordered.findIndex((entry) => entry.href === doc.href);
   return {
     previous: index > 0 ? ordered[index - 1] : undefined,
@@ -183,7 +264,7 @@ export function getAdjacentDocs(doc: DocEntry) {
 }
 
 export function getSearchIndex(): SearchRecord[] {
-  return getAllDocs().map((doc) => ({
+  return getAllDocs().filter((doc) => !doc.isFullManual).map((doc) => ({
     href: doc.href,
     title: doc.title,
     description: doc.description,
