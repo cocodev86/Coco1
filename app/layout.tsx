@@ -11,7 +11,7 @@ const defaultTitle = "Metaphor Consulting | AI Automation & Digital Systems";
 
 export const metadata: Metadata = {
   metadataBase: new URL(brand.url),
-  title: { default: defaultTitle, template: "%s" },
+  title: { default: defaultTitle, template: "%s | Metaphor Consulting" },
   applicationName: brand.displayName,
   description: brand.description,
   alternates: { canonical: "/" },
