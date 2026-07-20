@@ -26,13 +26,13 @@ jobs:
           fetch-depth: 0
           show-progress: false
 
-      - name: Capture Phase 4 metadata codemod
+      - name: Capture Phase 4 metadata repair
         id: metadata-codemod
         if: github.event_name == 'pull_request' && github.head_ref == 'feat/metadata-social-preview-normalization' && github.event.pull_request.head.repo.full_name == github.repository
         shell: bash
         run: |
           set +e
-          node scripts/apply-phase4-route-metadata-v2.mjs > phase4-codemod.log 2>&1
+          node scripts/repair-phase4-dynamic-metadata.mjs > phase4-codemod.log 2>&1
           status=$?
           cat phase4-codemod.log
           echo "status=$status" >> "$GITHUB_OUTPUT"
@@ -46,21 +46,21 @@ jobs:
           path: phase4-codemod.log
           retention-days: 1
 
-      - name: Enforce Phase 4 metadata codemod
+      - name: Enforce Phase 4 metadata repair
         if: github.event_name == 'pull_request' && github.head_ref == 'feat/metadata-social-preview-normalization' && steps.metadata-codemod.outputs.status != '0'
         run: exit 1
 
-      - name: Commit Phase 4 metadata normalization
+      - name: Commit Phase 4 metadata repair
         if: github.event_name == 'pull_request' && github.head_ref == 'feat/metadata-social-preview-normalization' && github.event.pull_request.head.repo.full_name == github.repository
         shell: bash
         run: |
           if git diff --quiet; then
-            echo "No route metadata changes were required."
+            echo "No dynamic metadata repairs were required."
           else
             git config user.name "github-actions[bot]"
             git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-            git add app lib scripts
-            git commit -m "feat(metadata): normalize route metadata and social previews"
+            git add app scripts
+            git commit -m "fix(metadata): repair dynamic route metadata functions"
             git push origin HEAD:feat/metadata-social-preview-normalization
           fi
 
