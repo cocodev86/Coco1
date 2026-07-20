@@ -29,7 +29,7 @@ export default function Home() {
     <main className={orderStyles.page}>
       <nav className={`nav shell ${orderStyles.navigation}`} aria-label="Primary navigation">
         <BrandLink className="brand" href="#top" variant="compactDark" logoWidth={176} priority />
-        <div className="navlinks"><a href="#services">Services</a><a href="#process">Process</a><a href="#pricing">Pricing</a><Link href="/blog">Blog</Link><a href="#booking">Booking</a></div>
+        <div className="navlinks"><a href="#services">Services</a><a href="#process">Process</a><a href="#pricing">Pricing</a><Link href="/blog">Blog</Link><Link href="/docs">Docs</Link><a href="#booking">Booking</a></div>
         <a className="button button-small" href="#booking">Book a strategy call</a>
         <MobileMenu />
       </nav>
