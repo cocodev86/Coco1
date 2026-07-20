@@ -22,14 +22,6 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     description: `Articles and practical guidance tagged ${title}.`,
     path: `/blog/tag/${slug}`,
   });
-}: Props): Promise<Metadata> {
-  const { slug } = await params;
-  if (!tags.includes(slug)) return {};
-  const title = titleFromSlug(slug);
-  return {
-    title: `${title} Articles | Metaphor Consulting`,
-    description: `Articles and practical guidance tagged ${title}.`,
-  };
 }
 
 export default async function TagPage({ params }: Props) {

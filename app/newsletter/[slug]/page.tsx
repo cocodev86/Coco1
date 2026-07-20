@@ -22,16 +22,6 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     type: "article",
     authors: ["Coco"],
   });
-}: { params: Promise<{ slug: string }> }): Promise<Metadata> {
-  const { slug } = await params;
-  const issue = newsletterIssues.find((item) => item.slug === slug);
-  if (!issue) return {};
-  return {
-    title: `${issue.title} | The Metaphor Memo`,
-    description: issue.summary,
-    alternates: { canonical: `/newsletter/${issue.slug}` },
-    openGraph: { title: issue.title, description: issue.summary, type: "article" },
-  };
 }
 
 export default async function NewsletterIssuePage({ params }: { params: Promise<{ slug: string }> }) {

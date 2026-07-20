@@ -22,14 +22,6 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     description: `Practical ${category.name.toLowerCase()} guides and strategies for growing businesses.`,
     path: `/blog/category/${slug}`,
   });
-}: Props): Promise<Metadata> {
-  const { slug } = await params;
-  const category = categories.find((item) => item.slug === slug);
-  if (!category) return {};
-  return {
-    title: `${category.name} Articles | Metaphor Consulting`,
-    description: `Practical ${category.name.toLowerCase()} guides and strategies for growing businesses.`,
-  };
 }
 
 export default async function CategoryPage({ params }: Props) {

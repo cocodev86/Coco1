@@ -22,16 +22,6 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     path: `/resources/${resource.slug}`,
     type: "article",
   });
-}: { params: Promise<{ slug: string }> }): Promise<Metadata> {
-  const { slug } = await params;
-  const resource = resources.find((item) => item.slug === slug);
-  if (!resource) return {};
-  return {
-    title: `${resource.title} | Metaphor Consulting`,
-    description: resource.description,
-    alternates: { canonical: `/resources/${resource.slug}` },
-    openGraph: { title: resource.title, description: resource.description, type: "article" },
-  };
 }
 
 export default async function ResourcePage({ params }: { params: Promise<{ slug: string }> }) {

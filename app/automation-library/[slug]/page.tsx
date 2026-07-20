@@ -21,16 +21,6 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     path: `/automation-library/${playbook.slug}`,
     type: "article",
   });
-}: { params: Promise<{ slug: string }> }): Promise<Metadata> {
-  const { slug } = await params;
-  const playbook = automations.find((item) => item.slug === slug);
-  if (!playbook) return {};
-  return {
-    title: `${playbook.title} Automation | Metaphor Consulting`,
-    description: playbook.summary,
-    alternates: { canonical: `/automation-library/${playbook.slug}` },
-    openGraph: { title: playbook.title, description: playbook.summary, type: "article" },
-  };
 }
 
 export default async function AutomationPlaybookPage({ params }: { params: Promise<{ slug: string }> }) {

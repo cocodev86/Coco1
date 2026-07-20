@@ -25,15 +25,6 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     path: `/blog/case-studies/${study.slug}`,
     type: "article",
   });
-}: PageProps): Promise<Metadata> {
-  const { slug } = await params;
-  const study = getCaseStudy(slug);
-  if (!study) return {};
-
-  return {
-    title: `${study.title} | Metaphor Case Study`,
-    description: study.summary,
-  };
 }
 
 export default async function CaseStudyPage({ params }: PageProps) {

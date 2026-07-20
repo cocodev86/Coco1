@@ -27,34 +27,6 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     modifiedTime: article.updated ?? article.date,
     tags: article.tags,
   });
-}: { params: Promise<{ slug: string }> }): Promise<Metadata> {
-  const { slug } = await params;
-  const article = articles.find((item) => item.slug === slug);
-  if (!article) return {};
-
-  return {
-    title: `${article.title} | Metaphor Consulting`,
-    description: article.excerpt,
-    keywords: article.tags,
-    authors: [{ name: article.author }],
-    alternates: { canonical: `/blog/${article.slug}` },
-    openGraph: {
-      type: "article",
-      title: article.title,
-      description: article.excerpt,
-      publishedTime: article.date,
-      modifiedTime: article.updated ?? article.date,
-      authors: [article.author],
-      tags: article.tags,
-      url: `/blog/${article.slug}`,
-      siteName: "Metaphor Consulting",
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: article.title,
-      description: article.excerpt,
-    },
-  };
 }
 
 export default async function ArticlePage({ params }: { params: Promise<{ slug: string }> }) {
