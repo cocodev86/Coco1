@@ -28,6 +28,9 @@ jobs:
       - name: Validate metadata system
         run: node scripts/validate-metadata.mjs
 
+      - name: Validate documentation portal
+        run: node scripts/validate-docs-portal.mjs
+
       - name: Use Node.js 20
         uses: actions/setup-node@v4
         with:
