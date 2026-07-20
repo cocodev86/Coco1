@@ -43,3 +43,5 @@ jobs:
           git add app lib scripts
           git commit -m "feat(metadata): normalize route metadata and social previews"
           git push origin HEAD:feat/metadata-social-preview-normalization
+
+# Triggered after workflow registration so the one-time codemod can run.
