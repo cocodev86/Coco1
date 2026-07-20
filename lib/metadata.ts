@@ -1,10 +1,17 @@
 import type { Metadata } from "next";
 import { brand } from "@/lib/brand";
 
-export const defaultSocialImage = "/opengraph-image";
+export const defaultOpenGraphImage = "/opengraph-image";
+export const defaultTwitterImage = "/twitter-image";
 
 export function absoluteUrl(path = "/") {
   return new URL(path, brand.url).toString();
+}
+
+function normalizeDate(value?: string) {
+  if (!value) return undefined;
+  const parsed = new Date(value);
+  return Number.isNaN(parsed.getTime()) ? value : parsed.toISOString();
 }
 
 type PageMetadataOptions = {
@@ -17,7 +24,8 @@ type PageMetadataOptions = {
   publishedTime?: string;
   modifiedTime?: string;
   tags?: string[];
-  image?: string;
+  openGraphImage?: string;
+  twitterImage?: string;
 };
 
 export function createPageMetadata(options: PageMetadataOptions): Metadata {
@@ -31,13 +39,15 @@ export function createPageMetadata(options: PageMetadataOptions): Metadata {
     publishedTime,
     modifiedTime,
     tags,
-    image = defaultSocialImage,
+    openGraphImage = defaultOpenGraphImage,
+    twitterImage = defaultTwitterImage,
   } = options;
 
   const canonical = absoluteUrl(path);
-  const imageUrl = absoluteUrl(image);
+  const openGraphImageUrl = absoluteUrl(openGraphImage);
+  const twitterImageUrl = absoluteUrl(twitterImage);
   const imageMetadata = {
-    url: imageUrl,
+    url: openGraphImageUrl,
     width: 1200,
     height: 630,
     alt: `${title} — ${brand.shortName}`,
@@ -59,8 +69,8 @@ export function createPageMetadata(options: PageMetadataOptions): Metadata {
             siteName: brand.shortName,
             locale: "en_US",
             images: [imageMetadata],
-            publishedTime,
-            modifiedTime,
+            publishedTime: normalizeDate(publishedTime),
+            modifiedTime: normalizeDate(modifiedTime),
             authors,
             tags,
           }
@@ -77,7 +87,7 @@ export function createPageMetadata(options: PageMetadataOptions): Metadata {
       card: "summary_large_image",
       title,
       description,
-      images: [imageUrl],
+      images: [twitterImageUrl],
     },
   };
 }
