@@ -1,19 +1,25 @@
 import Link from "next/link";
 import BrandLink from "@/components/branding/BrandLink";
-import { DOC_CATEGORIES, getCategoryDocs, getSearchIndex } from "@/lib/docs";
+import { DOC_CATEGORIES, getCategoryDocs, getCategoryManual, getSearchIndex } from "@/lib/docs";
 import DocsSearch from "./DocsSearch";
 import DocsSidebar from "./DocsSidebar";
 import styles from "./docs.module.css";
 
 export default function DocsShell({ children }: { children: React.ReactNode }) {
-  const categories = DOC_CATEGORIES.map((category) => ({
-    ...category,
-    docs: getCategoryDocs(category.slug).map((doc) => ({
-      href: doc.href,
-      title: doc.title,
-      documentId: doc.metadata.documentId,
-    })),
-  }));
+  const categories = DOC_CATEGORIES.map((category) => {
+    const manual = getCategoryManual(category.slug);
+    return {
+      ...category,
+      manual: manual
+        ? { href: manual.href, title: manual.title, documentId: manual.metadata.documentId }
+        : undefined,
+      docs: getCategoryDocs(category.slug).map((doc) => ({
+        href: doc.href,
+        title: doc.title,
+        documentId: doc.metadata.documentId,
+      })),
+    };
+  });
 
   return (
     <div className={styles.portal}>
