@@ -1,14 +1,16 @@
 import type { Metadata } from "next";
+import { createPageMetadata } from "@/lib/metadata";
 import Link from "next/link";
 import BrandLink from "@/components/branding/BrandLink";
 import MobileMenu from "../MobileMenu";
 import { articles, categories } from "./data";
 import styles from "./blog.module.css";
 
-export const metadata: Metadata = {
-  title: "AI Automation Insights | Metaphor Consulting",
+export const metadata: Metadata = createPageMetadata({
+  title: "AI Automation Insights",
   description: "Practical guides, automation ideas, and digital growth strategies for small businesses building smarter systems.",
-};
+  path: "/blog",
+});
 
 const guides = [
   ["01", "Automation readiness", "Determine which workflows are stable enough to automate and which need to be fixed first."],

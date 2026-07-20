@@ -1,15 +1,16 @@
 import type { Metadata } from "next";
+import { createPageMetadata } from "@/lib/metadata";
 import Link from "next/link";
 import BrandLink from "@/components/branding/BrandLink";
 import SubscribeForm from "./SubscribeForm";
 import { newsletterIssues } from "./data";
 import styles from "./newsletter.module.css";
 
-export const metadata: Metadata = {
-  title: "The Metaphor Memo | AI Automation Newsletter",
+export const metadata: Metadata = createPageMetadata({
+  title: "The Metaphor Memo",
   description: "A practical newsletter about AI automation, lead systems, CRM operations, web strategy, and better client delivery.",
-  alternates: { canonical: "/newsletter" },
-};
+  path: "/newsletter",
+});
 
 export default function NewsletterPage() {
   return (

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { createPageMetadata } from "@/lib/metadata";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import BrandLink from "@/components/branding/BrandLink";
@@ -11,6 +12,17 @@ export function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+  const { slug } = await params;
+  const resource = resources.find((item) => item.slug === slug);
+  if (!resource) return {};
+
+  return createPageMetadata({
+    title: resource.title,
+    description: resource.description,
+    path: `/resources/${resource.slug}`,
+    type: "article",
+  });
+}: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
   const resource = resources.find((item) => item.slug === slug);
   if (!resource) return {};

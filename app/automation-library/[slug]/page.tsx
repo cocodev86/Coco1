@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { createPageMetadata } from "@/lib/metadata";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import BrandLink from "@/components/branding/BrandLink";
@@ -10,6 +11,17 @@ export function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+  const { slug } = await params;
+  const playbook = automations.find((item) => item.slug === slug);
+  if (!playbook) return {};
+
+  return createPageMetadata({
+    title: `${playbook.title} Automation`,
+    description: playbook.summary,
+    path: `/automation-library/${playbook.slug}`,
+    type: "article",
+  });
+}: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
   const playbook = automations.find((item) => item.slug === slug);
   if (!playbook) return {};

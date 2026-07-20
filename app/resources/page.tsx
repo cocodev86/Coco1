@@ -1,15 +1,16 @@
 import type { Metadata } from "next";
+import { createPageMetadata } from "@/lib/metadata";
 import Link from "next/link";
 import BrandLink from "@/components/branding/BrandLink";
 import ResourcesClient from "./ResourcesClient";
 import { resources, resourceTopics, resourceTypes } from "./data";
 import styles from "./resources.module.css";
 
-export const metadata: Metadata = {
-  title: "Business Automation Resources | Metaphor Consulting",
+export const metadata: Metadata = createPageMetadata({
+  title: "Business Automation Resources",
   description: "Free checklists, calculators, worksheets, templates, and guides for automation, CRM, lead capture, conversion, and client operations.",
-  alternates: { canonical: "/resources" },
-};
+  path: "/resources",
+});
 
 export default function ResourcesPage() {
   return (

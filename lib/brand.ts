@@ -5,7 +5,7 @@ export const brand = {
   tagline: "Intelligent Systems. Automated Results.",
   description:
     "AI automation consulting, intelligent websites, lead capture, booking systems, and connected business operations for growing companies.",
-  url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://metaphor.dev",
+  url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://metaphor-consulting.vercel.app",
   colors: {
     ink: "#0D0D14",
     graphite: "#1F2229",

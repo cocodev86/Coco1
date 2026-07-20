@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
 import { absoluteUrl } from "@/lib/metadata";
-import { articles } from "@/app/blog/data";
+import { articles, categories, tags } from "@/app/blog/data";
 import { caseStudies } from "@/app/blog/case-studies/data";
 import { automations } from "@/app/automation-library/data";
 import { resources } from "@/app/resources/data";
@@ -21,6 +21,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
   const dynamicRoutes = [
     ...articles.map((item) => `/blog/${item.slug}`),
+    ...categories.map((item) => `/blog/category/${item.slug}`),
+    ...tags.map((slug) => `/blog/tag/${slug}`),
     ...caseStudies.map((item) => `/blog/case-studies/${item.slug}`),
     ...automations.map((item) => `/automation-library/${item.slug}`),
     ...resources.map((item) => `/resources/${item.slug}`),

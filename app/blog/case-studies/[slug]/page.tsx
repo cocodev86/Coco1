@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { createPageMetadata } from "@/lib/metadata";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import BrandLink from "@/components/branding/BrandLink";
@@ -14,6 +15,17 @@ export function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const { slug } = await params;
+  const study = getCaseStudy(slug);
+  if (!study) return {};
+
+  return createPageMetadata({
+    title: study.title,
+    description: study.summary,
+    path: `/blog/case-studies/${study.slug}`,
+    type: "article",
+  });
+}: PageProps): Promise<Metadata> {
   const { slug } = await params;
   const study = getCaseStudy(slug);
   if (!study) return {};

@@ -1,15 +1,16 @@
 import type { Metadata } from "next";
+import { createPageMetadata } from "@/lib/metadata";
 import Link from "next/link";
 import BrandLink from "@/components/branding/BrandLink";
 import LibraryClient from "./LibraryClient";
 import { automations, automationCategories, automationIndustries, automationIntegrations } from "./data";
 import styles from "./library.module.css";
 
-export const metadata: Metadata = {
-  title: "Automation Library | Metaphor Consulting",
+export const metadata: Metadata = createPageMetadata({
+  title: "Automation Library",
   description: "Explore practical automation playbooks for lead capture, booking, customer response, sales operations, and client delivery.",
-  alternates: { canonical: "/automation-library" },
-};
+  path: "/automation-library",
+});
 
 export default function AutomationLibraryPage() {
   return (
