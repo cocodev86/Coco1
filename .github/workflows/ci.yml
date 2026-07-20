@@ -7,7 +7,7 @@ on:
       - main
 
 permissions:
-  contents: read
+  contents: write
 
 concurrency:
   group: ci-${{ github.workflow }}-${{ github.ref }}
@@ -21,6 +21,27 @@ jobs:
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          fetch-depth: 0
+
+      - name: Apply Phase 4 metadata codemod
+        if: github.event_name == 'pull_request' && github.head_ref == 'feat/metadata-social-preview-normalization' && github.event.pull_request.head.repo.full_name == github.repository
+        run: node scripts/apply-phase4-route-metadata.mjs
+
+      - name: Commit Phase 4 metadata normalization
+        if: github.event_name == 'pull_request' && github.head_ref == 'feat/metadata-social-preview-normalization' && github.event.pull_request.head.repo.full_name == github.repository
+        shell: bash
+        run: |
+          if git diff --quiet; then
+            echo "No route metadata changes were required."
+          else
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add app lib scripts
+            git commit -m "feat(metadata): normalize route metadata and social previews"
+            git push origin HEAD:feat/metadata-social-preview-normalization
+          fi
 
       - name: Validate brand system
         run: node scripts/validate-brand-assets.mjs
