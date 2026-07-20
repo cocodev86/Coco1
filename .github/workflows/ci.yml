@@ -32,7 +32,7 @@ jobs:
         shell: bash
         run: |
           set +e
-          node scripts/apply-phase4-route-metadata.mjs > phase4-codemod.log 2>&1
+          node scripts/apply-phase4-route-metadata-v2.mjs > phase4-codemod.log 2>&1
           status=$?
           cat phase4-codemod.log
           echo "status=$status" >> "$GITHUB_OUTPUT"
