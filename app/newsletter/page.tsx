@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import BrandLink from "@/components/branding/BrandLink";
 import SubscribeForm from "./SubscribeForm";
 import { newsletterIssues } from "./data";
 import styles from "./newsletter.module.css";
@@ -14,7 +15,7 @@ export default function NewsletterPage() {
   return (
     <main className={styles.page}>
       <nav className={`shell ${styles.nav}`} aria-label="Newsletter navigation">
-        <Link className="brand" href="/"><span>M</span>Metaphor</Link>
+        <BrandLink className="brand" href="/" variant="compactDark" logoWidth={176} priority />
         <div className={styles.navLinks}><Link href="/blog">Insights</Link><Link href="/automation-library">Automation library</Link><Link href="/resources">Resources</Link></div>
         <a className="button button-small" href="#subscribe">Subscribe</a>
       </nav>
@@ -48,7 +49,7 @@ export default function NewsletterPage() {
         </div>
       </section>
 
-      <footer className={`shell ${styles.footer}`}><Link className="brand" href="/"><span>M</span>Metaphor</Link><p>Practical systems guidance for growing businesses.</p><small>© 2026 Metaphor Consulting.</small></footer>
+      <footer className={`shell ${styles.footer}`}><BrandLink className="brand" href="/" variant="compactDark" logoWidth={176} /><p>Practical systems guidance for growing businesses.</p><small>© 2026 Metaphor Consulting.</small></footer>
     </main>
   );
 }

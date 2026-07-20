@@ -22,6 +22,9 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v4
 
+      - name: Validate brand system
+        run: node scripts/validate-brand-assets.mjs
+
       - name: Use Node.js 20
         uses: actions/setup-node@v4
         with:

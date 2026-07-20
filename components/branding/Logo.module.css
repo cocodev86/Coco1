@@ -1,0 +1,21 @@
+.logo {
+  display: block;
+  flex: none;
+  max-width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+.link {
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+  line-height: 0;
+}
+
+.mark {
+  display: inline-grid;
+  place-items: center;
+  flex: none;
+  line-height: 0;
+}

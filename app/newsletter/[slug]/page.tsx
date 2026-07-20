@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import BrandLink from "@/components/branding/BrandLink";
 import { newsletterIssues } from "../data";
 import styles from "./issue.module.css";
 
@@ -39,7 +40,7 @@ export default async function NewsletterIssuePage({ params }: { params: Promise<
     <main className={styles.page}>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
       <nav className={`shell ${styles.nav}`} aria-label="Newsletter issue navigation">
-        <Link className="brand" href="/"><span>M</span>Metaphor</Link>
+        <BrandLink className="brand" href="/" variant="compactDark" logoWidth={176} priority />
         <div className={styles.navLinks}><Link href="/newsletter">Newsletter</Link><Link href="/blog">Insights</Link><Link href="/resources">Resources</Link></div>
         <Link className="button button-small" href="/newsletter#subscribe">Subscribe</Link>
       </nav>
@@ -63,7 +64,7 @@ export default async function NewsletterIssuePage({ params }: { params: Promise<
       </article>
 
       <section className={`shell ${styles.cta}`}><h2>Put the idea into operation.</h2><p>Metaphor can map the workflow, choose the stack, implement the automation, and document the handoff.</p><Link className="button" href="/#booking">Book a strategy call</Link></section>
-      <footer className={`shell ${styles.footer}`}><Link className="brand" href="/"><span>M</span>Metaphor</Link><p>The Metaphor Memo.</p><small>© 2026 Metaphor Consulting.</small></footer>
+      <footer className={`shell ${styles.footer}`}><BrandLink className="brand" href="/" variant="compactDark" logoWidth={176} /><p>The Metaphor Memo.</p><small>© 2026 Metaphor Consulting.</small></footer>
     </main>
   );
 }

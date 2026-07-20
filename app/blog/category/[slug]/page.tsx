@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import BrandLink from "@/components/branding/BrandLink";
 import { articles, categories } from "../../data";
 import styles from "../../TaxonomyPage.module.css";
 
@@ -29,7 +30,7 @@ export default async function CategoryPage({ params }: Props) {
   return (
     <main className={styles.page}>
       <nav className={`shell ${styles.nav}`} aria-label="Category navigation">
-        <Link className="brand" href="/"><span>M</span>Metaphor</Link>
+        <BrandLink className="brand" href="/" variant="compactDark" logoWidth={176} priority />
         <div className={styles.navLinks}><Link href="/">Home</Link><Link href="/blog">Blog</Link></div>
         <Link className="button button-small" href="/#booking">Book a strategy call</Link>
       </nav>
@@ -47,7 +48,7 @@ export default async function CategoryPage({ params }: Props) {
           </article>
         ))}</div> : <div className={styles.empty}>Articles for this category are being prepared. The archive route is live and ready for publishing.</div>}
       </section>
-      <footer className={`shell ${styles.footer}`}><Link className="brand" href="/"><span>M</span>Metaphor</Link><p>AI automation insights and digital systems for growing businesses.</p><small>© 2026 Metaphor Consulting.</small></footer>
+      <footer className={`shell ${styles.footer}`}><BrandLink className="brand" href="/" variant="compactDark" logoWidth={176} /><p>AI automation insights and digital systems for growing businesses.</p><small>© 2026 Metaphor Consulting.</small></footer>
     </main>
   );
 }

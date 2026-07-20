@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import BrandLink from "@/components/branding/BrandLink";
 import ResourcesClient from "./ResourcesClient";
 import { resources, resourceTopics, resourceTypes } from "./data";
 import styles from "./resources.module.css";
@@ -14,7 +15,7 @@ export default function ResourcesPage() {
   return (
     <main className={styles.page}>
       <nav className={`shell ${styles.nav}`} aria-label="Resources navigation">
-        <Link className="brand" href="/"><span>M</span>Metaphor</Link>
+        <BrandLink className="brand" href="/" variant="compactDark" logoWidth={176} priority />
         <div className={styles.navLinks}><Link href="/blog">Insights</Link><Link href="/automation-library">Automation library</Link><Link href="/blog/case-studies">Case studies</Link></div>
         <Link className="button button-small" href="/#booking">Book a strategy call</Link>
       </nav>
@@ -32,7 +33,7 @@ export default function ResourcesPage() {
         <p className="eyebrow">Need implementation support?</p><h2>Turn the completed worksheet into a working business system.</h2><p>Metaphor can review your findings, map the process, choose the stack, build the automation, test exceptions, and document the handoff.</p><Link className="button" href="/#booking">Review my workflow with Metaphor</Link>
       </section>
 
-      <footer className={`shell ${styles.footer}`}><Link className="brand" href="/"><span>M</span>Metaphor</Link><p>Practical tools for smarter business systems.</p><small>© 2026 Metaphor Consulting.</small></footer>
+      <footer className={`shell ${styles.footer}`}><BrandLink className="brand" href="/" variant="compactDark" logoWidth={176} /><p>Practical tools for smarter business systems.</p><small>© 2026 Metaphor Consulting.</small></footer>
     </main>
   );
 }

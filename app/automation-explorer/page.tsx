@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import BrandLink from "@/components/branding/BrandLink";
 import ExplorerClient from "./ExplorerClient";
 import styles from "./explorer.module.css";
 
@@ -18,7 +19,7 @@ export default function AutomationExplorerPage() {
   return (
     <main className={styles.page}>
       <nav className={`shell ${styles.nav}`} aria-label="Automation explorer navigation">
-        <Link className="brand" href="/"><span>M</span>Metaphor</Link>
+        <BrandLink className="brand" href="/" variant="compactDark" logoWidth={176} priority />
         <div className={styles.navLinks}><Link href="/blog">Insights</Link><Link href="/automation-library">Automation library</Link><Link href="/resources">Resources</Link><Link href="/newsletter">Newsletter</Link></div>
         <Link className="button button-small" href="/#booking">Talk to Metaphor</Link>
       </nav>
@@ -36,7 +37,7 @@ export default function AutomationExplorerPage() {
 
       <div className="shell"><ExplorerClient /></div>
 
-      <footer className={`shell ${styles.footer}`}><Link className="brand" href="/"><span>M</span>Metaphor</Link><p>Directional automation diagnostics for growing businesses.</p><small>© 2026 Metaphor Consulting.</small></footer>
+      <footer className={`shell ${styles.footer}`}><BrandLink className="brand" href="/" variant="compactDark" logoWidth={176} /><p>Directional automation diagnostics for growing businesses.</p><small>© 2026 Metaphor Consulting.</small></footer>
     </main>
   );
 }
