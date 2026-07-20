@@ -4,11 +4,14 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import styles from "./docs.module.css";
 
+type SidebarDocument = { href: string; title: string; documentId?: string };
+
 type SidebarCategory = {
   slug: string;
   code: string;
   title: string;
-  docs: { href: string; title: string; documentId?: string }[];
+  manual?: SidebarDocument;
+  docs: SidebarDocument[];
 };
 
 export default function DocsSidebar({ categories }: { categories: SidebarCategory[] }) {
@@ -24,6 +27,11 @@ export default function DocsSidebar({ categories }: { categories: SidebarCategor
             <summary><span>{category.code}</span>{category.title}</summary>
             <div>
               <Link className={pathname === `/docs/${category.slug}` ? styles.active : undefined} href={`/docs/${category.slug}`}>Category overview</Link>
+              {category.manual && (
+                <Link className={pathname === category.manual.href ? styles.active : undefined} href={category.manual.href}>
+                  {category.manual.documentId && <small>{category.manual.documentId}</small>}Complete manual
+                </Link>
+              )}
               {category.docs.map((doc) => (
                 <Link className={pathname === doc.href ? styles.active : undefined} href={doc.href} key={doc.href}>
                   {doc.documentId && <small>{doc.documentId}</small>}{doc.title}
