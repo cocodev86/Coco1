@@ -20,6 +20,7 @@ const defaultLinks: MobileMenuLink[] = [
   { label: "Process", href: "#process" },
   { label: "Pricing", href: "#pricing" },
   { label: "Blog", href: "/blog" },
+  { label: "Docs", href: "/docs" },
   { label: "Booking", href: "#booking" },
 ];
 
