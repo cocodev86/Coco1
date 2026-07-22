@@ -4,7 +4,8 @@ import { track } from "@vercel/analytics";
 import { FocusEvent, FormEvent, useEffect, useMemo, useRef, useState } from "react";
 import styles from "./BookingForm.module.css";
 
-const BOOKING_ENDPOINT = "https://pqyigabrlnxcruzzkxuc.supabase.co/functions/v1/submit-booking";
+const BOOKING_ENDPOINT = process.env.NEXT_PUBLIC_BOOKING_ENDPOINT || "/api/bookings";
+const DEVELOPMENT_MODE = process.env.NEXT_PUBLIC_APP_ENV === "development";
 
 const services = [
   "AI landing page",
@@ -20,6 +21,11 @@ const stepOneFields = ["name", "email", "service"] as const;
 const stepTwoFields = ["preferred_date", "preferred_time", "project_details"] as const;
 type FieldName = typeof stepOneFields[number] | typeof stepTwoFields[number];
 type FormControl = HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement;
+type BookingResponse = { message?: string };
+
+function trackEvent(name: string, data: Record<string, string | number>) {
+  if (!DEVELOPMENT_MODE) track(name, data);
+}
 
 function getFieldError(field: FormControl): string {
   const name = field.name as FieldName;
@@ -59,7 +65,7 @@ export default function BookingForm() {
     const reportAbandonment = () => {
       if (!startedRef.current || completedRef.current || abandonedRef.current) return;
       abandonedRef.current = true;
-      track("Form Abandonment", { step });
+      trackEvent("Form Abandonment", { step });
     };
 
     const handleVisibilityChange = () => {
@@ -77,7 +83,7 @@ export default function BookingForm() {
   function markFormStarted() {
     if (startedRef.current) return;
     startedRef.current = true;
-    track("Form Start", { location: "booking" });
+    trackEvent("Form Start", { location: "booking" });
   }
 
   function validateFields(names: readonly FieldName[]) {
@@ -163,18 +169,19 @@ export default function BookingForm() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
       });
+      const result = await response.json().catch(() => ({})) as BookingResponse;
 
-      if (!response.ok) throw new Error("Booking request could not be submitted.");
+      if (!response.ok) throw new Error(result.message || "Booking request could not be submitted.");
       completedRef.current = true;
-      track("Form Completion", { service: payload.service, budget: payload.budget || "Not provided" });
+      trackEvent("Form Completion", { service: payload.service, budget: payload.budget || "Not provided" });
       formElement.reset();
       setErrors({});
       setStep(1);
       setStatus("success");
-      setMessage("Your strategy-call request is in. We’ll review it and send confirmation details to the email you provided.");
-    } catch {
+      setMessage(result.message || "Your strategy-call request is in. We’ll review it and send confirmation details to the email you provided.");
+    } catch (error) {
       setStatus("error");
-      setMessage("We couldn’t submit your request. Your entries are still here—please try again in a moment.");
+      setMessage(error instanceof Error ? error.message : "We couldn’t submit your request. Your entries are still here—please try again in a moment.");
     }
   }
 
