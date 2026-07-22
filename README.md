@@ -4,7 +4,7 @@ Metaphor is a Next.js application for an AI-automation consulting practice. It c
 
 ## Runtime
 
-- Node.js 20
+- Node.js 22
 - Next.js 15
 - React 19
 - TypeScript
@@ -14,6 +14,8 @@ Metaphor is a Next.js application for an AI-automation consulting practice. It c
 ## Development environment
 
 The `develop` branch is the controlled development line and was created from the exact commit deployed to production on `main`. Production remains unchanged while development work is performed and validated on `develop` or focused branches created from it.
+
+The repository pins Node.js 22 in both `package.json` and `.nvmrc` because that is the runtime used by the current production build. Development must use the same major version.
 
 Set up a local development environment with:
 
