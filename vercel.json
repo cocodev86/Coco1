@@ -1,0 +1,21 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "env": {
+    "APP_ENV": "development",
+    "NEXT_PUBLIC_APP_ENV": "development",
+    "NEXT_PUBLIC_BOOKING_ENDPOINT": "/api/bookings",
+    "BOOKING_MODE": "mock",
+    "ALLOW_PRODUCTION_SERVICES": "false"
+  },
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, nofollow, noarchive"
+        }
+      ]
+    }
+  ]
+}
