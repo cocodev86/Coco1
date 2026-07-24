@@ -15,7 +15,8 @@
     "validate:assets": "node scripts/validate-public-assets.mjs",
     "validate:brand": "node scripts/validate-brand-assets.mjs",
     "validate:metadata": "node scripts/validate-metadata.mjs",
-    "validate": "npm run lint && npm run typecheck && npm run test && npm run validate:assets && npm run validate:brand && npm run validate:metadata && npm run build"
+    "validate:docs": "node scripts/validate-docs-portal.mjs",
+    "validate": "npm run lint && npm run typecheck && npm run test && npm run validate:assets && npm run validate:brand && npm run validate:metadata && npm run validate:docs && npm run build"
   },
   "dependencies": {
     "@types/node": "^22.10.0",
@@ -25,6 +26,11 @@
     "next": "^15.1.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
+    "react-markdown": "^10.1.0",
+    "rehype-autolink-headings": "^7.1.0",
+    "rehype-highlight": "^7.0.2",
+    "rehype-slug": "^6.0.0",
+    "remark-gfm": "^4.0.1",
     "typescript": "^5.7.0"
   },
   "devDependencies": {
